@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.music</groupId>
+  <artifactId>music-java</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>music_eureka</module>
+    <module>music_dao_mongo</module>
+    <module>music_song</module>
+    <module>music_commons</module>
+      <module>music_gateway</module>
+  </modules>
+
+
+  <name>music-java</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>18</maven.compiler.source>
+    <maven.compiler.target>18</maven.compiler.target>
+    <boot-version>3.0.2</boot-version>
+    <cloud-version>2022.0.0</cloud-version>
+    <fastdfs-version>1.27</fastdfs-version>
+    <commons-lang-version>3.4</commons-lang-version>
+    <lcn-version>5.0.2.RELEASE</lcn-version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <version>1.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.22</version>
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-dependencies</artifactId>
+      <version>${boot-version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-dependencies</artifactId>
+      <version>${cloud-version}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+    <!-- fastdfs -->
+    <dependency>
+      <groupId>cn.bestwu</groupId>
+      <artifactId>fastdfs-client-java</artifactId>
+      <version>${fastdfs-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang-version}</version>
+    </dependency>
+    <!-- lcn 事务管理器 -->
+    <dependency>
+      <groupId>com.codingapi.txlcn</groupId>
+      <artifactId>txlcn-tm</artifactId>
+      <version>${lcn-version}</version>
+    </dependency>
+    <!-- lcn 客户端 -->
+    <dependency>
+      <groupId>com.codingapi.txlcn</groupId>
+      <artifactId>txlcn-tc</artifactId>
+      <version>${lcn-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.codingapi.txlcn</groupId>
+      <artifactId>txlcn-txmsg-netty</artifactId>
+      <version>${lcn-version}</version>
+    </dependency>
+  </dependencies>
+  </dependencyManagement>
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${boot-version}</version>
+          <configuration>
+            <!-- 代表maven打包时会将外部引入的jar包,打包到项目jar内 -->
+            <includeSystemScope>true</includeSystemScope>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>18</source>
+          <target>18</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
