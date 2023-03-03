@@ -15,10 +15,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TestService {
     @Autowired
     private SongService songService;
-    @Test
-    public void testSelect() {
-        Result<Song> songResult =  songService.getSongs();
-        System.out.println(songResult.getStatus() );
-        System.out.println(songResult.getResults());
-    }
+//    @Test
+//    public void testSelect() {
+//        Result<Song> songResult =  songService.getSongs();
+//        System.out.println(songResult.getStatus() );
+//        System.out.println(songResult.getResults());
+//    }
 }

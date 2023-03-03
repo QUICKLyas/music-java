@@ -4,7 +4,7 @@ music:
       server: http://139.224.66.83:8888
 spring:
   application:
-    name: music_song
+    name: music-song
   profiles:
     active: mongodb
 server:

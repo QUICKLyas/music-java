@@ -1,0 +1,24 @@
+server:
+  port: 4006
+spring:
+  application:
+    name: music-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        # 定义song 路由
+        - id: song
+          uri: lb://music-song
+          predicates:
+            - Path=/song
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://139.224.66.83:8761/eureka
+

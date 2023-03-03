@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController // 自动增加ResponseBody
@@ -23,8 +25,11 @@ public class SongController {
      *     "results":[Object,Object,Object...]
      * }
      */
-    @GetMapping("/songs")
+    @GetMapping("/song")
     public Result getSongs(){
-        return songService.getSongs();
+        List<Integer> songIds = new ArrayList<Integer>();
+        songIds.add(3951888);
+        songIds.add(16880808);
+        return songService.getSongs(songIds);
     }
 }
