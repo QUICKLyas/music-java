@@ -14,6 +14,8 @@
     <module>music_song</module>
     <module>music_commons</module>
       <module>music_gateway</module>
+      <module>music_recommendation</module>
+      <module>music_pojo</module>
   </modules>
 
 

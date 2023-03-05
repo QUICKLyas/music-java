@@ -29,4 +29,7 @@ public class TestDao {
         }
 
     }
+    @Test void testInsert() {
+
+    }
 }

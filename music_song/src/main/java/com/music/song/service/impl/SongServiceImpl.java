@@ -8,9 +8,7 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -51,5 +49,20 @@ public class SongServiceImpl implements SongService {
     @Override
     public Result<Song> getSongDetail(Integer songId) {
         return null;
+    }
+
+    /**
+     * 根据user_id 和 music_id
+     * @param jsonSrc
+     * @return
+     */
+    @Override
+    public Result<Map> insertSongToCollectionLike(Map jsonSrc) {
+        System.out.println(jsonSrc);
+        List<String> objects = new ArrayList<>(jsonSrc.size());
+        for (Object key : jsonSrc.keySet()){
+            objects.add(jsonSrc.get(key).toString().substring(1,jsonSrc.get(key).toString().length()-1));
+        }
+        return new Result<>(200,songDao.insertSongToCollectionLike(objects.get(0),Integer.parseInt(objects.get(1))));
     }
 }
