@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum CodeEnum {
-    SUCCESS(2200,"操作成功"),
-    SUCCESS_BUT_NO_DATA(2101,"请求成功，数据不存在"),
-    SUCCESS_BUT_HAS_DATA(2102, "请求成功，数据已存在"),
+    SUCCESS(200,"操作成功"),
+    SUCCESS_BUT_NO_DATA(200,"请求成功，数据不存在"),
+    SUCCESS_BUT_HAS_DATA(200, "请求成功，数据已存在"),
     SUCCESS_BUT_BUSINESS_DEAL(200, "请求成功，但是业务处理上有处理"),
     SUCCESS_BUT_CHANNEL_NOT_ALLOWED(200, "请求成功，但是该操作不允许在当前渠道执行"),
     BAD_REQUEST(400, "请求参数错误"),

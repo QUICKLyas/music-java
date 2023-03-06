@@ -16,3 +16,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://139.224.66.83:8761/eureka
+
+
+

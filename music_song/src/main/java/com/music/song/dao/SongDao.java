@@ -10,5 +10,6 @@ public interface SongDao {
     List<Song> getSongs(List<Integer> songIds);
     List<Song> getSongDetail(Integer songId);
 
-    List<Map> insertSongToCollectionLike(String userId, Integer musicId);
+    List<Map> updateSongToCollectionLike(String userId, Integer musicId,List<String> tags);
+    List<Map> getNextSongFromCollectionPlaylist(Long playlistId, Integer musicId);
 }

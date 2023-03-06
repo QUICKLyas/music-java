@@ -5,24 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Controller;
 
-import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "song")
-public class Song implements Serializable {
+@Document(collection = "playlistdetail")
+public class PlaylistDetail {
     @Id
     private String _id;
-    private Integer id;
-    private Integer name;
-    private Map<String,Object> songUrl;
-    private Map<String,Object> songAble;
+    private Long id;
+    private String name;
+    private List<Map> trackIds;
 
-    private List tags;
-    private List similaritySong;
+
 }

@@ -14,10 +14,21 @@ spring:
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/song
+            - Path=/next
+#            - Query=playlistId
+#            - Query=musicId
+        - id: song
+          uri: lb://music-song
+          predicates:
+            - Path=/favorites
+        - id: song
+          uri: lb://music-song
+          predicates:
+            - Path=/search
 eureka:
   instance:
     prefer-ip-address: true
+    ip-address: 139.224.66.83
   client:
     service-url:
       defaultZone: http://139.224.66.83:8761/eureka

@@ -1,10 +1,15 @@
 package com.music.song.service.impl;
 
+import com.music.commons.pojo.CodeEnum;
+import com.music.commons.pojo.Keys;
 import com.music.commons.pojo.Result;
 import com.music.song.dao.SongDao;
+import com.music.song.pojo.Favorites;
+import com.music.song.pojo.NextPrevious;
 import com.music.song.pojo.Song;
 import com.music.song.service.SongService;
 import jakarta.annotation.Resource;
+import org.bson.types.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +44,7 @@ public class SongServiceImpl implements SongService {
             Song song = songList.get(i);
             results.add(song);
         }
-        return new Result<>(200,results);
+        return new Result<>(CodeEnum.SUCCESS.getCode(), CodeEnum.SUCCESS.getDesc(), results);
     }
 
     /**
@@ -51,18 +56,37 @@ public class SongServiceImpl implements SongService {
         return null;
     }
 
+
     /**
-     * 根据user_id 和 music_id
+     * 将歌曲信息加入到用户内部程序中
      * @param jsonSrc
      * @return
      */
     @Override
-    public Result<Map> insertSongToCollectionLike(Map jsonSrc) {
-        System.out.println(jsonSrc);
-        List<String> objects = new ArrayList<>(jsonSrc.size());
-        for (Object key : jsonSrc.keySet()){
-            objects.add(jsonSrc.get(key).toString().substring(1,jsonSrc.get(key).toString().length()-1));
+    public Result<Map> updateSongToCollectionLike(Favorites jsonSrc) {
+        if (jsonSrc.getUser_id()== null||jsonSrc.getMusic_id()== null||jsonSrc.getTags()== null) {
+            return new Result<>(CodeEnum.BAD_REQUEST.getCode(),CodeEnum.BAD_REQUEST.getDesc(),null);
         }
-        return new Result<>(200,songDao.insertSongToCollectionLike(objects.get(0),Integer.parseInt(objects.get(1))));
+        List<Map> results = songDao.updateSongToCollectionLike(jsonSrc.getUser_id(),
+                jsonSrc.getMusic_id(),
+                jsonSrc.getTags());
+        return results.get(0).get(Keys.KEY_ANSWER.getKey()).equals(CodeEnum.SUCCESS_BUT_NO_DATA.getDesc()) ?
+                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
+                new Result<>(CodeEnum.SUCCESS.getCode(), CodeEnum.SUCCESS.getDesc(), results);
+    }
+
+    /**
+     * 本方法根据playlistId 确定是获取状态，如果playlistId没有数据，说明是要随机获取歌曲
+     * 如果有内容，那么就要获取这首musicId 的下一首的id值，返回
+     * @param jsonSrc
+     * @return
+     *
+     */
+    @Override
+    public Result<Map> getNextSongFromCollectionPlaylist(NextPrevious jsonSrc) {
+        List<Map> results = songDao.getNextSongFromCollectionPlaylist(jsonSrc.getPlaylistId(), jsonSrc.getMusicId());
+        return results.get(0).keySet().contains(Keys.KEY_ANSWER.getKey())?
+                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
+                new Result<>(CodeEnum.SUCCESS.getCode(), CodeEnum.SUCCESS.getDesc(), results);
     }
 }

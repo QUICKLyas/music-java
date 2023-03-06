@@ -15,5 +15,6 @@ import java.util.List;
 @AllArgsConstructor // 有参构造方法
 public class Result<T> implements Serializable {
     private Integer status; // 返回正常时: 200
+    private String message;
     private List<T> results;
 }
