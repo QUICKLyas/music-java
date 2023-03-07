@@ -190,4 +190,57 @@ public class SongDaoImpl implements SongDao {
         resultList.add(resultMap);
         return resultList;
     }
+
+    @Override
+    public List<Map> getPreviousSongFromCollectionPlaylist(Long playlistId, Integer musicId) {
+        Map<String,Object> resultMap = new HashMap<>(1);
+        List<Map> resultList = new ArrayList<>(1); // 默认是由一个返回的数据
+        Song song = null;
+        if (playlistId == null ) { // 返回随机的歌曲
+            // 因为这个时候必定是随机获取的一首歌曲
+            // 通过上个方法中的一部分内容运行获取结果
+            return getNextSongFromCollectionPlaylist(playlistId, musicId);
+        } // 如果上面的判断通过下面进行正式获取
+        Query playlistQuery = Query.query(
+                Criteria.where("id").is(playlistId)
+        );
+        List<PlaylistDetail> playlistDetail = mongoTemplate.find(playlistQuery, PlaylistDetail.class);
+        List<Map> tracks = playlistDetail.get(0).getTrackIds();
+        List<Integer> songIds = makeListKeyId(tracks);
+        if (playlistDetail.size()<=0) {
+            resultMap.put(Keys.KEY_ANSWER.getKey(), CodeEnum.SUCCESS_BUT_NO_DATA.getDesc());
+        } else {
+            int index;
+            int length = playlistDetail.get(0).getTrackIds().size();
+            if (musicId == null) { // 如果musicId 没有传输，所以仍然是存第一首开始播放
+                index = 0;
+            } else { // 有musicId
+                index = songIds.indexOf(musicId)-1;
+            }
+            // 获取下一首歌曲的musicId
+            // 循环运算 index % length 当加 1 后的结果正好是 长度length ，通过这个计算式，回到 0
+            // 假设出现 -1 % length 此时结果不正确  使用 length + index % length
+            Integer musicIdPrevious = (Integer)(tracks.get((length+index)%length).get("id"));
+            // 设定查询条件
+            Query musicQuery = Query.query(
+                    Criteria.where("id").is(musicIdPrevious)
+            );
+            // 获取 musicId 对应的内容信息
+            List<Song> songs = mongoTemplate.find(musicQuery,Song.class);
+            List<SongDetail> songDetails = mongoTemplate.find(musicQuery,SongDetail.class);
+            if (songs.size() <= 0 || songDetails.size() <= 0 ) {
+                resultMap.put(Keys.KEY_ANSWER.getKey(), CodeEnum.SUCCESS_BUT_NO_DATA.getDesc());
+            } else {
+                song = songs.get(0);
+                resultMap.put("id",song.getId());
+                resultMap.put("name",songDetails.get(0).getName());
+                // 用不上，前端通过id 直接通过另一个服务获取
+                // resultMap.put("songUrl",song.getSongUrl());
+                resultMap.put("songAble",song.getSongAble());
+                resultMap.put("tags",song.getTags());
+            }
+        }
+        resultList.add(resultMap);
+        return resultList;
+    }
 }

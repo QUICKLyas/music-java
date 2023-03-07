@@ -12,4 +12,6 @@ public interface SongDao {
 
     List<Map> updateSongToCollectionLike(String userId, Integer musicId,List<String> tags);
     List<Map> getNextSongFromCollectionPlaylist(Long playlistId, Integer musicId);
+
+    List<Map> getPreviousSongFromCollectionPlaylist(Long playlistId, Integer musicId);
 }

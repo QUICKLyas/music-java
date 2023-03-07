@@ -6,6 +6,7 @@ import com.music.song.pojo.NextPrevious;
 import com.music.song.service.SongService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -26,6 +27,7 @@ public class SongController {
      */
     @GetMapping(value = "/search")
     public Result getSongs(){
+        System.out.println("request = ");
         List<Integer> songIds = new ArrayList<Integer>();
         songIds.add(3951888);
         songIds.add(16880808);
@@ -42,9 +44,18 @@ public class SongController {
      * 通过playlistdetail 表获取信息，同时根据musicId 获取其下一首歌曲的信息
      * @return
      */
-    @RequestMapping(value="next",method = RequestMethod.POST)
+    @RequestMapping(value="/next",method = RequestMethod.POST)
     public Result getNextSong(@RequestBody NextPrevious jsons){
         System.out.println("request body = " + jsons);
         return songService.getNextSongFromCollectionPlaylist(jsons);
+    }
+    /**
+     * 通过playlistdetail 表获取信息，同时根据musicId获取其下一首歌曲的信息
+     *
+     */
+    @RequestMapping(value="/previous",method = RequestMethod.POST)
+    public Result getPreviousSong(@RequestBody NextPrevious jsons) {
+        System.out.println("request = "+ jsons);
+        return null;
     }
 }

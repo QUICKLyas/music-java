@@ -17,4 +17,5 @@ public interface SongService {
 //    Result<Map> insertSongToCollectionLike(Map jsonSrc);
     Result<Map> updateSongToCollectionLike(Favorites jsonSrc);
     Result<Map> getNextSongFromCollectionPlaylist(NextPrevious jsonSrc);
+    Result<Map> getPreviousSongFromCollectionPlayList(NextPrevious jsonSrc);
 }

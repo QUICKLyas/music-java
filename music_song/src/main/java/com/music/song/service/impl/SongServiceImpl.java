@@ -89,4 +89,13 @@ public class SongServiceImpl implements SongService {
                 new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
                 new Result<>(CodeEnum.SUCCESS.getCode(), CodeEnum.SUCCESS.getDesc(), results);
     }
+
+    @Override
+    public Result<Map> getPreviousSongFromCollectionPlayList(NextPrevious jsonSrc) {
+        List<Map> results = songDao.getPreviousSongFromCollectionPlaylist(jsonSrc.getPlaylistId(), jsonSrc.getMusicId());
+        return results.get(0).keySet().contains(Keys.KEY_ANSWER.getKey())?
+                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
+                new Result<>(CodeEnum.SUCCESS.getCode(), CodeEnum.SUCCESS.getDesc(), results);
+    }
+
 }
