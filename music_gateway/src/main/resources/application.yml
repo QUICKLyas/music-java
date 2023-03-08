@@ -15,8 +15,6 @@ spring:
           uri: lb://music-song
           predicates:
             - Path=/next
-#            - Query=playlistId
-#            - Query=musicId
         - id: song
           uri: lb://music-song
           predicates:
@@ -25,6 +23,10 @@ spring:
           uri: lb://music-song
           predicates:
             - Path=/search
+        - id: song
+          uri: lb://music-song
+          predicates:
+            - Path=/previous
 eureka:
   instance:
     prefer-ip-address: true

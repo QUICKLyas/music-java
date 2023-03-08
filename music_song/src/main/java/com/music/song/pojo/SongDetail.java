@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "songdetail")
-public class SongDetail {
+public class SongDetail implements Serializable {
     @Id
     private String _id;
     private Integer id;

@@ -1,15 +1,11 @@
 package com.music.song.controller;
 
 import com.music.commons.pojo.Result;
-import com.music.song.pojo.Favorites;
-import com.music.song.pojo.NextPrevious;
+import com.music.song.pojo.reqbody.Favorites;
+import com.music.song.pojo.reqbody.NextPrevious;
 import com.music.song.service.SongService;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
 
 
 @RestController // 自动增加ResponseBody
@@ -17,26 +13,12 @@ import java.util.*;
 public class SongController {
     @Resource
     private SongService songService;
-    /**
-     * 需要处理跨域处理
-     * @return
-     * {
-     *     "status":200
-     *     "results":[Object,Object,Object...]
-     * }
-     */
-    @GetMapping(value = "/search")
-    public Result getSongs(){
-        System.out.println("request = ");
-        List<Integer> songIds = new ArrayList<Integer>();
-        songIds.add(3951888);
-        songIds.add(16880808);
-        return songService.getSongs(songIds);
-    }
+
+
 
     @RequestMapping(value = "/favorites",method = RequestMethod.POST)
     public Result insertSongLike(@RequestBody Favorites jsons) {
-        System.out.println("request body = " + jsons);
+        System.out.println("request body's json= " + jsons);
         return songService.updateSongToCollectionLike(jsons);
     }
 
@@ -46,7 +28,7 @@ public class SongController {
      */
     @RequestMapping(value="/next",method = RequestMethod.POST)
     public Result getNextSong(@RequestBody NextPrevious jsons){
-        System.out.println("request body = " + jsons);
+        System.out.println("request body's json = " + jsons);
         return songService.getNextSongFromCollectionPlaylist(jsons);
     }
     /**
@@ -55,7 +37,7 @@ public class SongController {
      */
     @RequestMapping(value="/previous",method = RequestMethod.POST)
     public Result getPreviousSong(@RequestBody NextPrevious jsons) {
-        System.out.println("request = "+ jsons);
+        System.out.println("request body's json = "+ jsons);
         return null;
     }
 }

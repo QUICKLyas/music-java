@@ -7,9 +7,6 @@ import java.util.Map;
 
 // 系统中的数据访问接口
 public interface SongDao {
-    List<Song> getSongs(List<Integer> songIds);
-    List<Song> getSongDetail(Integer songId);
-
     List<Map> updateSongToCollectionLike(String userId, Integer musicId,List<String> tags);
     List<Map> getNextSongFromCollectionPlaylist(Long playlistId, Integer musicId);
 

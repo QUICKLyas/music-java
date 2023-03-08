@@ -16,20 +16,4 @@ import java.util.List;
 public class TestDao {
     @Autowired
     private SongDao songDao;
-    @Test
-    public void testSelect() {
-        List<Integer> lists = new ArrayList<>();
-        lists.add(3951888);
-        lists.add(16880808);
-
-        List<Song> songs= songDao.getSongs(lists);
-        System.out.println(songs.size());
-        for (Song song : songs){
-            System.out.println(song);
-        }
-
-    }
-    @Test void testInsert() {
-
-    }
 }

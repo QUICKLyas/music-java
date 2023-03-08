@@ -1,19 +1,12 @@
 package com.music.song.service;
 
-import com.music.commons.pojo.Result;
 import com.music.song.MusicSongServerApplication;
-import com.music.song.pojo.NextPrevious;
-import com.music.song.pojo.Song;
+import com.music.song.pojo.reqbody.NextPrevious;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 @SpringBootTest(classes = {MusicSongServerApplication.class})

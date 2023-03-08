@@ -1,4 +1,4 @@
-package com.music.song.pojo;
+package com.music.song.pojo.reqbody;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

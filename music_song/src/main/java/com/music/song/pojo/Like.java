@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document(collection = "like")
-public class Like {
+public class Like implements Serializable {
     @Id
     private String _id;
     private String id;

@@ -33,23 +33,6 @@ public class SongDaoImpl implements SongDao {
     MongoTemplate mongoTemplate;
 
     /**
-     *
-     * @return
-     */
-    @Override
-    public List<Song> getSongs(List<Integer> songIds) {
-        Query query =Query.query(
-                Criteria.where("id").in(songIds)
-        );
-        return mongoTemplate.find(query,Song.class);
-    }
-
-    @Override
-    public List<Song> getSongDetail(Integer songId) {
-        return null;
-    }
-
-    /**
      * 寻找数据，数据库中有该用户，就获取其中的歌曲list，
      * 判断歌曲list中是否有musicId，
      * 如果有说明需要取消收藏，取出该条数据
