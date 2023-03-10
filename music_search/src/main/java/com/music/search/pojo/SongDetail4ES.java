@@ -17,7 +17,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "songdetail" , shards = 10,replicas = 1)
+@Document(indexName = "songdetail")
 public class SongDetail4ES implements Serializable {
     @Id
     private String _id;

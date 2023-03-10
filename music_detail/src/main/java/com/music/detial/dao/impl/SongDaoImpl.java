@@ -27,4 +27,15 @@ public class SongDaoImpl implements SongDao {
 //         query.limit(100);
         return mongoTemplate.find(query.limit(this.limit), SongDetail.class);
     }
+
+    /**
+     * 获取相关的结果，并以一组list返回，结果，且保持socket通信
+     * @param condition
+     * @return
+     */
+    @Override
+    public List<SongDetail> findSongByCondition(String condition) {
+//        QueryStringBuilder queryStringBuilder = Que
+        return null;
+    }
 }

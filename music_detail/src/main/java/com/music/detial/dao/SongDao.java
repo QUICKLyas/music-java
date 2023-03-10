@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface SongDao {
     List<SongDetail> findAllSongDetail();
+    List<SongDetail> findSongByCondition(String condition);
 }

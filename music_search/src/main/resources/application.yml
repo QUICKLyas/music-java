@@ -1,0 +1,18 @@
+music:
+  playlist:
+    nginx:
+      server: http://138.224.66.83:8888
+spring:
+  application:
+    name: music-search
+  profiles:
+    active: elasticsearch
+server:
+  port: 9003
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 139.224.66.93
+  client:
+    service-url:
+      defaultZone: http://139.224.66.83:8761/eureka
