@@ -9,10 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.music.recommendation</groupId>
-    <artifactId>music_recommendation</artifactId>
+    <groupId>com.music.elasticsearch</groupId>
+    <artifactId>music_data_elasticsearch</artifactId>
 
-    <name>music_recommendation</name>
+    <name>music_data_elasticsearch</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -25,22 +25,23 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>transport</artifactId>
+            <version>7.9.3</version>
         </dependency>
+
+        <!-- 测试包，与JAVA连接ES无关 -->
         <dependency>
-            <groupId>com.music.mongo</groupId>
-            <artifactId>music_dao_mongo</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.music.commons</groupId>
-            <artifactId>music_commons</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
+    <build>
+    </build>
 </project>

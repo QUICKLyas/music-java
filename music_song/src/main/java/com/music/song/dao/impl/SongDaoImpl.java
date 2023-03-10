@@ -9,7 +9,7 @@ import com.music.song.dao.SongDao;
 import com.music.song.pojo.PlaylistDetail;
 import com.music.song.pojo.Song;
 import com.music.song.pojo.SongDetail;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.bson.types.Code;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;

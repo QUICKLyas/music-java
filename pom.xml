@@ -19,6 +19,7 @@
       <module>music_palylist</module>
       <module>music_search</module>
     <module>music_detail</module>
+      <module>music_data_elasticsearch</module>
   </modules>
 
 
@@ -27,10 +28,10 @@
   <url>http://www.example.com</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>18</maven.compiler.source>
-    <maven.compiler.target>18</maven.compiler.target>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
     <boot-version>2.4.6</boot-version>
-    <cloud-version>2021.0.1</cloud-version>
+    <cloud-version>2020.0.5</cloud-version>
     <fastdfs-version>1.27</fastdfs-version>
     <commons-lang-version>3.4</commons-lang-version>
     <lcn-version>5.0.2.RELEASE</lcn-version>

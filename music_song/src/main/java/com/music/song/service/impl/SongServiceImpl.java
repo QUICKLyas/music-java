@@ -7,7 +7,7 @@ import com.music.song.dao.SongDao;
 import com.music.song.pojo.reqbody.Favorites;
 import com.music.song.pojo.reqbody.NextPrevious;
 import com.music.song.service.SongService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

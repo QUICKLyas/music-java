@@ -5,8 +5,8 @@ music:
 spring:
   application:
     name: music-search
-  profiles:
-    active: elasticsearch
+#  profiles:
+#    active: elasticsearch
 server:
   port: 9003
 eureka:

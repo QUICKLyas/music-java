@@ -1,0 +1,4 @@
+spring:
+  elasticsearch:
+    rest:
+      uris: 139.224.66.83:9200

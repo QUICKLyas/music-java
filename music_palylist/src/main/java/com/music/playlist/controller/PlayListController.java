@@ -2,7 +2,7 @@ package com.music.playlist.controller;
 
 import com.music.commons.pojo.Result;
 import com.music.playlist.service.PlayListService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;

@@ -4,7 +4,7 @@ import com.music.commons.pojo.CodeEnum;
 import com.music.commons.pojo.Result;
 import com.music.playlist.dao.PlayListDao;
 import com.music.playlist.service.PlayListService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.bson.types.Code;
 import org.springframework.stereotype.Service;
 

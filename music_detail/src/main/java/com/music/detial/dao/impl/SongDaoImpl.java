@@ -2,7 +2,7 @@ package com.music.detial.dao.impl;
 
 import com.music.detial.dao.SongDao;
 import com.music.pojo.SongDetail;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;

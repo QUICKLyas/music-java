@@ -4,7 +4,7 @@ import com.music.commons.pojo.Result;
 import com.music.song.pojo.reqbody.Favorites;
 import com.music.song.pojo.reqbody.NextPrevious;
 import com.music.song.service.SongService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 

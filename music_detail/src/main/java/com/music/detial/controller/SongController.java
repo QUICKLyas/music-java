@@ -3,7 +3,7 @@ package com.music.detial.controller;
 import com.music.commons.pojo.Result;
 import com.music.pojo.SongDetail;
 import com.music.detial.service.SongService;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
