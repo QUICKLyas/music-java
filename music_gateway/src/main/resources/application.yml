@@ -10,6 +10,11 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
+        # 定义 search
+        - id: search
+          uri: lb://music-search
+          predicates:
+            - Path=/search
         # 定义song 路由
         - id: song
           uri: lb://music-song
@@ -22,15 +27,11 @@ spring:
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/search
-        - id: song
-          uri: lb://music-song
-          predicates:
             - Path=/previous
 eureka:
   instance:
     prefer-ip-address: true
-    ip-address: 139.224.66.83
+#    ip-address: 139.224.66.83
   client:
     service-url:
       defaultZone: http://139.224.66.83:8761/eureka

@@ -1,7 +1,7 @@
 package com.music.song.service;
 
 import com.music.song.MusicSongServerApplication;
-import com.music.song.pojo.reqbody.NextPrevious;
+import com.music.pojo.reqbody.NextPrevious;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

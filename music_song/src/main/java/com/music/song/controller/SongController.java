@@ -1,8 +1,8 @@
 package com.music.song.controller;
 
 import com.music.commons.pojo.Result;
-import com.music.song.pojo.reqbody.Favorites;
-import com.music.song.pojo.reqbody.NextPrevious;
+import com.music.pojo.reqbody.Favorites;
+import com.music.pojo.reqbody.NextPrevious;
 import com.music.song.service.SongService;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +38,6 @@ public class SongController {
     @RequestMapping(value="/previous",method = RequestMethod.POST)
     public Result getPreviousSong(@RequestBody NextPrevious jsons) {
         System.out.println("request body's json = "+ jsons);
-        return null;
+        return songService.getPreviousSongFromCollectionPlayList(jsons);
     }
 }

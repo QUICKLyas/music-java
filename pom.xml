@@ -19,7 +19,8 @@
       <module>music_palylist</module>
       <module>music_search</module>
     <module>music_detail</module>
-      <module>music_data_elasticsearch</module>
+    <module>music_data_es</module>
+      <module>music_websocket</module>
   </modules>
 
 
@@ -29,14 +30,13 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>8</maven.compiler.source>
-    <maven.compiler.target>8</maven.compiler.target>
+    <maven.compiler.target>SS8</maven.compiler.target>
     <boot-version>2.4.6</boot-version>
     <cloud-version>2020.0.5</cloud-version>
     <fastdfs-version>1.27</fastdfs-version>
     <commons-lang-version>3.4</commons-lang-version>
     <lcn-version>5.0.2.RELEASE</lcn-version>
     <es-version>2.4.6</es-version>
-<!--    <es-data-version>4.1.12</es-data-version>-->
   </properties>
 
   <dependencies>

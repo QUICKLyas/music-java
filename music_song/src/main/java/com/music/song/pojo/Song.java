@@ -23,6 +23,6 @@ public class Song implements Serializable {
     private Map<String,Object> songUrl;
     private Map<String,Object> songAble;
 
-    private List tags;
-    private List similaritySong;
+    private List<Object> tags;
+    private List<Object> similaritySong;
 }
