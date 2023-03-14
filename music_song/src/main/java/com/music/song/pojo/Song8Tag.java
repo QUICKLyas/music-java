@@ -16,7 +16,7 @@ public class Song8Tag {
     private Object _id;
     private Integer id;
     private String name;
-    private List<String> tags;
+    private List<Object> tags;
     private String picUrl;
-    private List<Map<String,Object>> ar;
+    private Object ar;
 }

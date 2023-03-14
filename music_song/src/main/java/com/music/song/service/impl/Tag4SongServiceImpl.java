@@ -27,7 +27,6 @@ public class Tag4SongServiceImpl implements Tag4SongService {
     public Result<Song8Tag> getSong(TagCondition tagCondition) {
         List<Song8Tag> results = songDao.getSongFromMongo(
                 tagCondition.getTag(),tagCondition.getPageIndex(),tagCondition.getPageSize());
-
         return results.size() != 0
                 ? new Result<>(CodeEnum.SUCCESS.getCode(), true,CodeEnum.SUCCESS.getDesc(),results)
                 : new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results);

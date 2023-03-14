@@ -42,32 +42,38 @@ public class Tag4SongDaoImpl implements Tag4SongDao {
         long count = mongoTemplate.count(query, Song.class);
         Pageable pageable = PageRequest.of(pageIndex==null? 0:pageIndex, pageSize==null ? 20:pageSize);
         List<Song> songList = mongoTemplate.find(query.with(pageable), Song.class);
-        System.out.println(songList);
-        System.out.println(songList.size());
         List<Map> results = new ArrayList<>(songList.size());
-//        for (Song item : songList) {
-//            results.add(ObjectUtils.beanToMap(item));
-//        }
+        // 将对象转为map
+        for (Song item : songList) {
+            results.add(ObjectUtils.beanToMap(item));
+        }
         List<Integer> songIdList = ListUtils.makeListKeyId(results);
-        System.out.println(songIdList.size());
         // 通过这群id获得歌曲的其他信息
         Query querySongDetail = Query.query(Criteria.where("id").in(songIdList));
-        List<SongDetail> songDetails = mongoTemplate.find(query,SongDetail.class);
-        System.out.println(songDetails.size());
-        List<Song8Tag> song8Tags = null;
+        List<SongDetail> songDetails = mongoTemplate.find(querySongDetail,SongDetail.class);
+        List<Song8Tag> song8Tags = new ArrayList<>(songIdList.size());
         for (SongDetail item : songDetails) {
             Song8Tag song8Tag = new Song8Tag();
-            System.out.println(item.getId());
-            System.out.println(songIdList.indexOf(item.getId()));
-            System.out.println(songList.get(songIdList.indexOf(item.getId())));
-            System.out.println(songList.get(songIdList.indexOf(item.getId())).getId());
-//            song8Tag.setTags(songList.get(songIdList.indexOf(item.getId()));
-
-            System.out.println(item);
+            // 处理结果成为一个json报文
+            int index = songIdList.indexOf(item.getId());
+            song8Tag.setTags(songList.get(index).getTags());
+            song8Tag.set_id(songList.get(index).get_id());
+            song8Tag.setId(songList.get(index).getId());
+            song8Tag.setName(item.getName());
+            song8Tag.setPicUrl((String)songDetails.get(index).getSong().get("picUrl"));
+            song8Tag.setAr(songDetails.get(songIdList.indexOf(item.getId())).getSong().get("ar"));
+            song8Tags.add(song8Tag);
         }
-        return null;
+        return song8Tags;
     }
 
+    /**
+     * 暂定不用写
+     * @param tag
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
     @Override
     public List<Song8Tag> getSongsFromMongo(String tag, Integer pageIndex, Integer pageSize) {
         return null;
