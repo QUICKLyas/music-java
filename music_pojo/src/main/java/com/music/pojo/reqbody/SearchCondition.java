@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchCondition {
-    private String name;
+    private String musicName;
     private Integer pageIndex;
     private Integer pageSize = 20;
 }

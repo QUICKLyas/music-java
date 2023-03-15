@@ -8,16 +8,14 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(indexName = "songdetail" ,shards = 1,replicas = 1)
-public class SongDetail implements Serializable {
-//    @Id
-//    private String _id;
+@Document(indexName = "song" ,shards = 1,replicas = 1)
+public class Song4ES {
     @Id
     @Field(type = FieldType.Keyword)
     private Integer id;
@@ -25,5 +23,8 @@ public class SongDetail implements Serializable {
     @Field(type = FieldType.Text , analyzer = "ik_smart",searchAnalyzer = "ik_max_word")
     private String name;
 
-    private Map<String,Object> song;
+    private List<Object> tags;
+    private List<Object> similaritySong;
+    private Map<String, Object> songAble;
+    private Map<String, Object> songUrl;
 }
