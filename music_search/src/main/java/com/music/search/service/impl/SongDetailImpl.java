@@ -72,11 +72,15 @@ public class SongDetailImpl implements SongDetailService {
         List<SongResult> results = new ArrayList<>(songIdList.size());
         // 将结果整理出来 输出
         for (Song4ES item : song4ES) {
+            // 考虑如果连个大小不一致的时候应该如何处理
+
             int index = songIdList.indexOf(item.getId());
+            // 验证结果， songIdList 的id 位置等于songDetail4ES 的id 位置一致
+            // 但是具体 song4ES 的id 位置不一致所以，我们需要解决这个问题，不适用song4ES获取数据而是item
             SongResult result = new SongResult();
             result.setId(item.getId());
             result.setName(songDetails4ES.get(index).getName());
-            result.setTags(song4ES.get(index).getTags());
+            result.setTags(item.getTags());
             result.setAr(songDetails4ES.get(index).getSong().get("ar"));
             result.setPicUrl(songDetail.getPicUrl());
             results.add(result);
