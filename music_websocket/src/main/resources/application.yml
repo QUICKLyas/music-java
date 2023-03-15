@@ -1,0 +1,9 @@
+music:
+  playlist:
+    nginx:
+      server: http://138.224.66.83:8888
+spring:
+  application:
+    name: music-websocket
+server:
+  port: 8999

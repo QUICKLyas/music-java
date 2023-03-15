@@ -1,4 +1,4 @@
-package com.music.socket;
+package com.music.python;
 
 /**
  * Hello world!

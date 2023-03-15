@@ -21,6 +21,7 @@
     <module>music_detail</module>
     <module>music_data_es</module>
       <module>music_websocket</module>
+      <module>music_python</module>
   </modules>
 
 
