@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController // 自动增加ResponseBody
 @CrossOrigin // 当前类型下所有方法支持跨域
+@RequestMapping("/song")
 public class SongController {
     @Resource
     private SongService songService;
@@ -18,7 +19,7 @@ public class SongController {
 
     @RequestMapping(value = "/favorites",method = RequestMethod.POST)
     public Result insertSongLike(@RequestBody Favorites jsons) {
-        System.out.println("request body's json= " + jsons);
+        System.out.println("request body's json = " + jsons);
         return songService.updateSongToCollectionLike(jsons);
     }
 

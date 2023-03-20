@@ -68,7 +68,7 @@ public class Tag4SongDaoImpl implements Tag4SongDao {
     }
 
     /**
-     * 暂定不用写
+     * 原接口名字为random
      * @param tag
      * @param pageIndex
      * @param pageSize
@@ -79,8 +79,4 @@ public class Tag4SongDaoImpl implements Tag4SongDao {
         return null;
     }
 
-//    @Override
-//    public List<Song8Tag> getSongsFromMongo(String tag, Integer pageIndex,Integer pageSize) {
-//        return null;
-//    }
 }

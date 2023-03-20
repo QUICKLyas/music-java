@@ -21,4 +21,14 @@ public class Tag4SongController {
         result = tag4SongService.getSong(tag);
         return result;
     }
+
+    /**
+     * 原接口名字为random
+     * @param tag
+     * @return
+     */
+    @PostMapping("/random")
+    public Result getRandomSong8Tag(@RequestParam String tag){
+        return null;
+    }
 }

@@ -13,13 +13,11 @@ import javax.annotation.Resource;
 @RestController
 public class TestController {
 
-    private static final PythonInterpreter interpreter = new PythonInterpreter();
-
     @RequestMapping(value = "/test")
     public String test() {
-        interpreter.execfile("F:\\IDE\\Python\\demo\\test.py");
-        PyFunction function = interpreter.get("say_hello",PyFunction.class);
-        PyObject obj =  function.__call__();
+//        interpreter.execfile("F:\\IDE\\Python\\demo\\test.py");
+//        PyFunction function = interpreter.get("say_hello",PyFunction.class);
+//        PyObject obj =  function.__call__();
         return null;
     }
 }

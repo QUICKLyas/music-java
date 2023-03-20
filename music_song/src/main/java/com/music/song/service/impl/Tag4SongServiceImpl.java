@@ -32,6 +32,11 @@ public class Tag4SongServiceImpl implements Tag4SongService {
                 : new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results);
     }
 
+    /**
+     * 原接口是random
+     * @param tagCondition
+     * @return
+     */
     @Override
     public Result<Song8Tag> getSongs(TagCondition tagCondition) {
         return null;

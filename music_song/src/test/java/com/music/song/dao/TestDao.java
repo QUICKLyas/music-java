@@ -16,4 +16,12 @@ import java.util.List;
 public class TestDao {
     @Autowired
     private SongDao songDao;
+    @Autowired
+    private CollectMusicDao collectMusicDao;
+
+    @Test
+    public void TestCollectMusicService () {
+//        Integer musicId, String userId
+        collectMusicDao.getCollectSExist(3951888,"1a78b6d8b67911ed95dd00155dadb10b");
+    }
 }

@@ -19,15 +19,15 @@ spring:
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/next
+            - Path=/song/next
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/favorites
+            - Path=/song/favorites
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/previous
+            - Path=/song/previous
 eureka:
   instance:
     prefer-ip-address: true
