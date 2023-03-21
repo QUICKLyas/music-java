@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface Tag4SongDao {
     List<Song8Tag> getSongFromMongo(String tag,@Nullable Integer pageIndex,@Nullable Integer pageSize);
-    List<Song8Tag> getSongsFromMongo(String tag, Integer pageIndex,Integer pageSize);
+    List<Song8Tag> getRandomSongsFromMongo(String tag);
 }

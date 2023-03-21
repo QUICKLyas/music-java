@@ -10,11 +10,11 @@ import javax.annotation.Resource;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/song")
+@RequestMapping("/tag")
 public class Tag4SongController {
     @Resource
     Tag4SongService tag4SongService;
-    @PostMapping("/tag")
+    @PostMapping("/")
     public Result getSongByTag(@RequestBody TagCondition tag){
         System.out.println("request body's json = " + tag);
         Result<Song8Tag> result;
@@ -23,12 +23,12 @@ public class Tag4SongController {
     }
 
     /**
-     * 原接口名字为random
+     * 原接口名字为random，随机获取一定数量的某个tag 的 歌曲
      * @param tag
      * @return
      */
     @PostMapping("/random")
     public Result getRandomSong8Tag(@RequestParam String tag){
-        return null;
+        return tag4SongService.getRandomSongs(tag);
     }
 }

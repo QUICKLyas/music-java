@@ -4,10 +4,8 @@ import com.music.commons.pojo.CodeEnum;
 import com.music.commons.pojo.Result;
 import com.music.pojo.reqbody.TagCondition;
 import com.music.song.dao.Tag4SongDao;
-import com.music.song.pojo.Song;
 import com.music.song.pojo.Song8Tag;
 import com.music.song.service.Tag4SongService;
-import org.bson.types.Code;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -38,7 +36,10 @@ public class Tag4SongServiceImpl implements Tag4SongService {
      * @return
      */
     @Override
-    public Result<Song8Tag> getSongs(TagCondition tagCondition) {
-        return null;
+    public Result<Song8Tag> getRandomSongs(String tag) {
+        List<Song8Tag> results = songDao.getRandomSongsFromMongo(tag);
+        return results.size() > 0
+                ? new Result<>(CodeEnum.SUCCESS.getCode(), true,CodeEnum.SUCCESS.getDesc(), results)
+                : new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), false,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(), results);
     }
 }

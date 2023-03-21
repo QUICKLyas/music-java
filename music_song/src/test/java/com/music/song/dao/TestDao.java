@@ -19,9 +19,17 @@ public class TestDao {
     @Autowired
     private CollectMusicDao collectMusicDao;
 
+    @Autowired
+    private Tag4SongDao tag4SongDao;
+
     @Test
     public void TestCollectMusicService () {
 //        Integer musicId, String userId
         collectMusicDao.getCollectSExist(3951888,"1a78b6d8b67911ed95dd00155dadb10b");
+    }
+
+    @Test
+    public void TestTag4Song() {
+        tag4SongDao.getRandomSongsFromMongo("ACG");
     }
 }

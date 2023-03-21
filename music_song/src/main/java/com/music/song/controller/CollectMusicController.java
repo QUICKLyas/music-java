@@ -15,14 +15,14 @@ import javax.annotation.Resource;
 public class CollectMusicController {
     @Resource
     private CollectMusicService collectMusicService;
-    @PostMapping("/s")
+    @PostMapping("/exists")
     public Exits getCollectSongExist(@RequestBody CollectMusic collectMusic){
         System.out.println("request body's json = " + collectMusic);
         return collectMusicService.getCollectSExist(collectMusic);
     }
 
     /**
-     * 按照tag 获取歌曲信息
+     * 按照tag 获取歌曲信息,暂时不写
      * @return
      */
     @PostMapping("/t")

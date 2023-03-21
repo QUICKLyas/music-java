@@ -46,8 +46,15 @@ public class CollectMusicDaoImpl implements CollectMusicDao {
         String success = String.valueOf(song.getSongAble().get("success"));
         return Objects.equals(success, "true");
     }
+
+
+    /**
+     *
+     * @return
+     */
     @Override
     public List<SongDetail> getRandomMusic() {
+
         return null;
     }
 }
