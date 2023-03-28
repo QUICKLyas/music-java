@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$/music_commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_commons/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_dao_mongo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_dao_mongo/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/music_data_elasticsearch/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/music_data_elasticsearch/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_data_es/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_data_es/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_detail/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_detail/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/music_detial/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/music_detial/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_eureka/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_eureka/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_palylist/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_palylist/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/music_palylist/src/test/java/com/music/playlist/dao/TestPlayListDao.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/music_pojo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_pojo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_python/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_python/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/music_pythonpro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/music_pythonpro/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_recommendation/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_recommendation/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_search/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/music_search/src/main/java/com/music/search/service/SongService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_search/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_song/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/music_song/src/main/resources" charset="UTF-8" />
@@ -34,5 +32,6 @@
     <file url="file://$PROJECT_DIR$/music_websocket/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
   </component>
 </project>

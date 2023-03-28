@@ -18,10 +18,10 @@
       <module>music_pojo</module>
       <module>music_palylist</module>
       <module>music_search</module>
-    <module>music_detail</module>
-    <module>music_data_es</module>
+      <module>music_detail</module>
+      <module>music_data_es</module>
       <module>music_websocket</module>
-      <module>music_python</module>
+      <module>music_pythonpro</module>
   </modules>
 
 

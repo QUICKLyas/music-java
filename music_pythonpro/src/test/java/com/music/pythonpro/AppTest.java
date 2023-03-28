@@ -1,4 +1,4 @@
-package com.music.python;
+package com.music.pythonpro;
 
 import static org.junit.Assert.assertTrue;
 
