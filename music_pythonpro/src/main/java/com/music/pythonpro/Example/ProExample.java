@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public abstract class ProExample {
-    public abstract boolean proStart(CFP commandFileParams);
-    public abstract void proEntry();
+    public abstract Object proStart(CFP commandFileParams);
+    public abstract void proEntry() throws Exception;
     public void proMain(String[] args) throws IOException, InterruptedException{
         Process proc;
         proc = Runtime.getRuntime().exec(args);

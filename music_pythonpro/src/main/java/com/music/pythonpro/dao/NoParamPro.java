@@ -6,39 +6,38 @@ import com.music.pythonpro.pojo.CFP;
 import java.io.IOException;
 
 public class NoParamPro extends ProExample {
-    private Process proc;
+    private CFP cmdArray;
 
     /**
      * 无参进行使用python程序
      * 默认直接使用proEntry
+     *
      * @param commandFileParams
      * @return
      */
     @Override
-    public boolean proStart(CFP commandFileParams) {
+    public Object proStart(CFP commandFileParams) {
         // 启动Main程序
-//        try {
-//            proMain(commandFileParams.getCommand() , commandFileParams.getFile());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-        return null;
+        this.cmdArray = commandFileParams;
+        try {
+            proEntry();
+        } catch (Exception e) {
+            System.out.println(e.getClass());
+            // 表示出现了问题，需要返回问题
+            return e;
+        }
+        return true;
     }
 
     @Override
-    public void proEntry() {
-
+    public void proEntry() throws RuntimeException{
+        String[] args = new String[2];
+        args[0] = this.cmdArray.getCommand();
+        args[1] = this.cmdArray.getFile();
+        try {
+            super.proMain(args);
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
-
-    /**
-     * 对上面的proMain进行重写
-     */
-    public void proMain(String command, String fileName) throws IOException, InterruptedException {
-        String[] args =  new String[] {command,fileName};
-        // 形成可以使用的command语句，用于后面的Runtime.getRuntime().exec()中。
-
-    }
-
 }

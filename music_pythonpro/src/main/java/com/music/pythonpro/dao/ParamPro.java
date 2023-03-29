@@ -16,19 +16,27 @@ public class ParamPro extends ProExample {
      * 因为当前的方法是需要将参数传入到python程序中运行
      * 假设当前的cfd类中的数据正确，那么将数据存储到本类中的实例中，
      * 否则不成功
-     *
+     * null 参数缺少
+     * e 运行出现异常 ，显示异常的问题
+     * true 成功运行程序
      * @param commandFileParams
      * @return
      */
     @Override
-    public boolean proStart(CFP commandFileParams) {
+    public Object proStart(CFP commandFileParams) {
         this.cmdArray = commandFileParams;
         if(commandFileParams.getParams() == null || commandFileParams.getParams().size() <= 0 || commandFileParams.getFile() == null) {
-            // 表示出现
-            return false;
+            // 表示出现参数问题
+            return null;
         } else {
             // 启动程序主入口
-            proEntry();
+            try {
+                proEntry();
+            } catch (Exception e) {
+                System.out.println(e.getClass());
+                // 表示出现了问题，需要返回问题
+                return e;
+            }
             return true;
         }
     }
@@ -38,8 +46,8 @@ public class ParamPro extends ProExample {
      * 有参数的运行方式，首先应该确定获取的对象 有 三个指令， 运行文件的绝对路径，最后的参数。
      */
     @Override
-    public void proEntry() {
-        String[] args = new String[]{};
+    public void proEntry() throws RuntimeException{
+        String[] args = new String[this.cmdArray.getParams().size() + 2];
         args[0] = this.cmdArray.getCommand();
         args[1] = this.cmdArray.getFile();
         args = createCmdArray(args,this.cmdArray.getParams().size() + 2, this.cmdArray.getParams());
