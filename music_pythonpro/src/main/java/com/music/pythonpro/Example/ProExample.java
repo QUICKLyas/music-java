@@ -1,5 +1,27 @@
 package com.music.pythonpro.Example;
 
+import com.music.pythonpro.pojo.CFP;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public abstract class ProExample {
-    public abstract void proStart();
+    public abstract boolean proStart(CFP commandFileParams);
+    public abstract void proEntry();
+    public void proMain(String[] args) throws IOException, InterruptedException{
+        Process proc;
+        proc = Runtime.getRuntime().exec(args);
+        BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+        String line =null;
+        while((line = in.readLine()) != null) {
+            System.out.println(line);
+        }
+        // 关闭输出流
+        in.close();
+        proc.waitFor();
+    }
+
+
+
 }
