@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.music.commons.utils.DataUtils.timeUTC;
+
 public class ParamPro extends ProExample {
 
     private CFP cmdArray;
@@ -33,7 +35,7 @@ public class ParamPro extends ProExample {
             try {
                 proEntry();
             } catch (Exception e) {
-                System.out.println(e.getClass());
+                System.out.println("["+timeUTC()+"]: "+e.getClass());
                 // 表示出现了问题，需要返回问题
                 return e;
             }

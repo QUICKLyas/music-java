@@ -10,7 +10,6 @@ import com.music.search.pojo.SongDetail4ES;
 import com.music.search.pojo.SongResult;
 import com.music.search.service.SongDetailService;
 import lombok.extern.slf4j.Slf4j;
-import org.jboss.errai.bus.server.annotations.ShadowService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
@@ -18,8 +17,6 @@ import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
-import org.springframework.data.elasticsearch.core.query.Query;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import reactor.util.annotation.Nullable;
 
@@ -28,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static com.music.commons.utils.DataUtils.timeUTC;
 
 @Service
 @Slf4j
@@ -122,7 +121,7 @@ public class SongDetailImpl implements SongDetailService {
     @Override
     public Page<SongDetail4ES> findAll(Integer pageIndex, Integer pageSize) {
         Page<SongDetail4ES> page = songDetailRepository.findAll(PageRequest.of(pageIndex,pageSize));
-        System.out.println(page);
+        System.out.println("["+timeUTC()+"]: "+"page-"+page);
         return null;
     }
 
@@ -137,17 +136,6 @@ public class SongDetailImpl implements SongDetailService {
                 .and(new Criteria("name").contains(songDetail.getName())))
                 .setPageable(PageRequest.of(pageIndex,pageSize));
 
-//        HighlightBuilder highlightBuilder = new HighlightBuilder();
-//        highlightBuilder.field("id").field("name");
-//        highlightBuilder.requireFieldMatch(false);
-//        HighlightQuery highlightQuery = new HighlightQuery(highlightBuilder);
-//        criteriaQuery.setHighlightQuery(highlightQuery);
-
-//        SearchHits<SongDetail> searchHits = elasticsearchRestTemplate.search(criteriaQuery,SongDetail.class);
-//        List<SongDetail> result = searchHits.get().map(e -> {
-//            SongDetail element = e.getContent();
-//            element.setHighlights
-//        })
         return null;
     }
 }

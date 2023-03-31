@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+import static com.music.commons.utils.DataUtils.timeUTC;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/collect")
@@ -17,7 +19,7 @@ public class CollectMusicController {
     private CollectMusicService collectMusicService;
     @PostMapping("/exists")
     public Exits getCollectSongExist(@RequestBody CollectMusic collectMusic){
-        System.out.println("request body's json = " + collectMusic);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + collectMusic);
         return collectMusicService.getCollectSExist(collectMusic);
     }
 

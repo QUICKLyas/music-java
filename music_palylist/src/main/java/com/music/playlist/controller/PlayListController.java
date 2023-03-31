@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+import static com.music.commons.utils.DataUtils.timeUTC;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/pl")
@@ -26,13 +28,13 @@ public class PlayListController {
      */
     @PostMapping("/cat")
     public DataR getPlayListCat(@RequestBody TagCondition tagCondition){
-        System.out.println("request body's json = " + tagCondition);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + tagCondition);
 
         return playListService.getPlayList8Cat(tagCondition);
     }
     @GetMapping(value = "/default")
     public Result getPlayList(){
-        System.out.println("request body's json = " + null);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + null);
         return playListService.getDefaultPlayList() ;
     }
 }

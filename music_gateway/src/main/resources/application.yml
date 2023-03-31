@@ -10,12 +10,29 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
+        # 定义 playlist
+        - id: playlist
+          uri: lb://music-playlist
+          predicates:
+            - Path=/pl/cat
+        - id: playlist
+          uri: lb://music-playlist
+          predicates:
+            - Path=/pl/default
         # 定义 search
         - id: search
           uri: lb://music-search
           predicates:
             - Path=/search
         # 定义song 路由
+        - id: collect
+          uri: lb://music-song
+          predicates:
+            - Path=/collect/exists
+        - id: collect
+          uri: lb://music-song
+          predicates:
+            - Path=/collect/t
         - id: song
           uri: lb://music-song
           predicates:
@@ -23,11 +40,19 @@ spring:
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/song/favorites
+            - Path=/song/previous
         - id: song
           uri: lb://music-song
           predicates:
-            - Path=/song/previous
+            - Path=/song/favorites
+        - id: tag
+          uri: lb://music-song
+          predicates:
+            - Path=/tag/
+        - id: tag
+          uri: lb://music-song
+          predicates:
+            - Path=/tag/random
 eureka:
   instance:
     prefer-ip-address: true

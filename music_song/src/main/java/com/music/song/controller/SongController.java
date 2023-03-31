@@ -7,6 +7,8 @@ import com.music.song.service.SongService;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import static com.music.commons.utils.DataUtils.timeUTC;
+
 
 @RestController // 自动增加ResponseBody
 @CrossOrigin // 当前类型下所有方法支持跨域
@@ -19,7 +21,7 @@ public class SongController {
 
     @RequestMapping(value = "/favorites",method = RequestMethod.POST)
     public Result insertSongLike(@RequestBody Favorites jsons) {
-        System.out.println("request body's json = " + jsons);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + jsons);
         return songService.updateSongToCollectionLike(jsons);
     }
 
@@ -29,7 +31,7 @@ public class SongController {
      */
     @RequestMapping(value="/next",method = RequestMethod.POST)
     public Result getNextSong(@RequestBody NextPrevious jsons){
-        System.out.println("request body's json = " + jsons);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + jsons);
         return songService.getNextSongFromCollectionPlaylist(jsons);
     }
     /**
@@ -38,7 +40,7 @@ public class SongController {
      */
     @RequestMapping(value="/previous",method = RequestMethod.POST)
     public Result getPreviousSong(@RequestBody NextPrevious jsons) {
-        System.out.println("request body's json = "+ jsons);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = "+ jsons);
         return songService.getPreviousSongFromCollectionPlayList(jsons);
     }
 }

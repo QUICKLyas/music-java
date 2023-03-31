@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import static com.music.commons.utils.DataUtils.timeUTC;
+
 @Repository
 public class PlayListDaoImpl implements PlayListDao {
     @Resource
@@ -71,7 +73,7 @@ public class PlayListDaoImpl implements PlayListDao {
                 Aggregation.sample(size));
         AggregationResults<PlayList> playLists = mongoTemplate.aggregate(aggregation,PlayList.class,PlayList.class);
         List<PlayList> playList = playLists.getMappedResults();
-        System.out.println(playList.size());
+        System.out.println("["+timeUTC()+"]: "+"playList's size is "+playList.size());
         return playList;
     }
 }

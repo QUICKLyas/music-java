@@ -32,7 +32,7 @@ public class Tag4SongServiceImpl implements Tag4SongService {
 
     /**
      * 原接口是random
-     * @param tagCondition
+     * @param tag
      * @return
      */
     @Override

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
+import static com.music.commons.utils.DataUtils.timeUTC;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/tag")
@@ -16,7 +18,7 @@ public class Tag4SongController {
     Tag4SongService tag4SongService;
     @PostMapping("/")
     public Result getSongByTag(@RequestBody TagCondition tag){
-        System.out.println("request body's json = " + tag);
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + tag);
         Result<Song8Tag> result;
         result = tag4SongService.getSong(tag);
         return result;
@@ -29,6 +31,7 @@ public class Tag4SongController {
      */
     @PostMapping("/random")
     public Result getRandomSong8Tag(@RequestParam String tag){
+        System.out.println("["+timeUTC()+"]: "+"request body's json = " + tag);
         return tag4SongService.getRandomSongs(tag);
     }
 }
