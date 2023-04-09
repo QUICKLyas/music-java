@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/r/p")
+@RequestMapping("/r/p") // recommend/playlist
 public class RecommendPlayListController {
     @PostMapping("/")
     public Result getUserPlayListRecommendation(@RequestBody RecommendationCondition recommendationCondition) {

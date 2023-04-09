@@ -1,7 +1,9 @@
 package com.music.recommendation.service;
 
 import com.music.commons.pojo.Result;
+import com.music.pojo.reqbody.RecommendationCondition;
 import com.music.recommendation.pojo.Recommendation;
+import org.springframework.web.bind.annotation.RequestBody;
 
 public interface RecommendationService {
     /**
@@ -14,4 +16,6 @@ public interface RecommendationService {
      */
 //    Result
     Result<Recommendation> getRecommendations(Integer userId);
+    Result<Recommendation> getRecommendationS(RecommendationCondition recommendationCondition);
+    Result<Recommendation> getRecommendationPL(RecommendationCondition recommendationCondition);
 }
