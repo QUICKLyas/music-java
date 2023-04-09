@@ -10,7 +10,6 @@ import java.util.Map;
  * Songs 服务接口
  */
 public interface SongService {
-    Result<Map> updateSongToCollectionLike(Favorites jsonSrc);
     Result<Map> getNextSongFromCollectionPlaylist(NextPrevious jsonSrc);
     Result<Map> getPreviousSongFromCollectionPlayList(NextPrevious jsonSrc);
 }

@@ -7,6 +7,7 @@ import com.music.song.service.SongService;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import static com.music.commons.utils.DataUtils.time;
 import static com.music.commons.utils.DataUtils.timeUTC;
 
 
@@ -19,11 +20,7 @@ public class SongController {
 
 
 
-    @RequestMapping(value = "/favorites",method = RequestMethod.POST)
-    public Result insertSongLike(@RequestBody Favorites jsons) {
-        System.out.println("["+timeUTC()+"]: "+"request body's json = " + jsons);
-        return songService.updateSongToCollectionLike(jsons);
-    }
+
 
     /**
      * 通过playlistdetail 表获取信息，同时根据musicId 获取其下一首歌曲的信息
@@ -31,7 +28,7 @@ public class SongController {
      */
     @RequestMapping(value="/next",method = RequestMethod.POST)
     public Result getNextSong(@RequestBody NextPrevious jsons){
-        System.out.println("["+timeUTC()+"]: "+"request body's json = " + jsons);
+        System.out.println("["+time()+"]: "+"request body's json = " + jsons);
         return songService.getNextSongFromCollectionPlaylist(jsons);
     }
     /**
@@ -40,7 +37,7 @@ public class SongController {
      */
     @RequestMapping(value="/previous",method = RequestMethod.POST)
     public Result getPreviousSong(@RequestBody NextPrevious jsons) {
-        System.out.println("["+timeUTC()+"]: "+"request body's json = "+ jsons);
+        System.out.println("["+time()+"]: "+"request body's json = "+ jsons);
         return songService.getPreviousSongFromCollectionPlayList(jsons);
     }
 }

@@ -83,7 +83,7 @@ public class SongDetailImpl implements SongDetailService {
             result.setPicUrl(songDetail.getPicUrl());
             results.add(result);
         }
-        return new Result<SongResult>(CodeEnum.SUCCESS.getCode(),true,CodeEnum.SUCCESS.getDesc(),results);
+        return new Result<SongResult>(CodeEnum.SUCCESS.getCode(),true,null,CodeEnum.SUCCESS.getDesc(),results);
     }
     @Override
     public void savAll(List<SongDetail4ES> songDetails) {

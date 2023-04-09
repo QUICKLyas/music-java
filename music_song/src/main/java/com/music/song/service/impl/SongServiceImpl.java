@@ -18,23 +18,7 @@ public class SongServiceImpl implements SongService {
     private SongDao songDao;
 
 
-    /**
-     * 将歌曲信息加入到用户内部程序中
-     * @param jsonSrc
-     * @return
-     */
-    @Override
-    public Result<Map> updateSongToCollectionLike(Favorites jsonSrc) {
-        if (jsonSrc.getUser_id()== null||jsonSrc.getMusic_id()== null||jsonSrc.getTags()== null) {
-            return new Result<>(CodeEnum.BAD_REQUEST.getCode(),false,CodeEnum.BAD_REQUEST.getDesc(),null);
-        }
-        List<Map> results = songDao.updateSongToCollectionLike(jsonSrc.getUser_id(),
-                jsonSrc.getMusic_id(),
-                jsonSrc.getTags());
-        return results.get(0).get(Keys.KEY_ANSWER.getKey()).equals(CodeEnum.SUCCESS_BUT_NO_DATA.getDesc()) ?
-                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false, CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
-                new Result<>(CodeEnum.SUCCESS.getCode(), true,CodeEnum.SUCCESS.getDesc(), results);
-    }
+
 
     /**
      * 本方法根据playlistId 确定是获取状态，如果playlistId没有数据，说明是要随机获取歌曲
@@ -47,16 +31,16 @@ public class SongServiceImpl implements SongService {
     public Result<Map> getNextSongFromCollectionPlaylist(NextPrevious jsonSrc) {
         List<Map> results = songDao.getNextSongFromCollectionPlaylist(jsonSrc.getPlaylistId(), jsonSrc.getMusicId());
         return results.get(0).keySet().contains(Keys.KEY_ANSWER.getKey())?
-                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false, CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
-                new Result<>(CodeEnum.SUCCESS.getCode(), true,CodeEnum.SUCCESS.getDesc(), results);
+                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false, null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
+                new Result<>(CodeEnum.SUCCESS.getCode(), true,null,CodeEnum.SUCCESS.getDesc(), results);
     }
 
     @Override
     public Result<Map> getPreviousSongFromCollectionPlayList(NextPrevious jsonSrc) {
         List<Map> results = songDao.getPreviousSongFromCollectionPlaylist(jsonSrc.getPlaylistId(), jsonSrc.getMusicId());
         return results.get(0).keySet().contains(Keys.KEY_ANSWER.getKey())?
-                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), false,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
-                new Result<>(CodeEnum.SUCCESS.getCode(), true, CodeEnum.SUCCESS.getDesc(), results);
+                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), false,null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
+                new Result<>(CodeEnum.SUCCESS.getCode(), true,null, CodeEnum.SUCCESS.getDesc(), results);
     }
 
 }

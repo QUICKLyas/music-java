@@ -8,11 +8,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@NoArgsConstructor //无参构造
-@AllArgsConstructor // 有参构造方法
-public class Exits implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class ResultData<T> implements Serializable {
     private Integer status; // 返回正常时: 200
     private Boolean success;
-    private  Boolean existence;
     private String message;
+    private String errmsg;
+    private List<T> data;
 }

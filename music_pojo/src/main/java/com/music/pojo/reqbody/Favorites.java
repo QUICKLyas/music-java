@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Favorites {
-    private String user_id;
-    private Integer music_id;
+    private String userId;
+    private Integer musicId;
     private List<String> tags;
 }
