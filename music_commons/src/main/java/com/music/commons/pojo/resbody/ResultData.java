@@ -1,4 +1,4 @@
-package com.music.commons.pojo;
+package com.music.commons.pojo.resbody;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,12 @@
 package com.music.song.service.impl;
 
-import com.music.commons.pojo.*;
+import com.music.commons.pojo.menu.CodeEnum;
+import com.music.commons.pojo.menu.Keys;
+import com.music.commons.pojo.resbody.Exits;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.resbody.ResultData;
 import com.music.pojo.SongDetail;
-import com.music.pojo.reqbody.Favorites;
+import com.music.commons.pojo.reqbody.Favorites;
 import com.music.song.dao.CollectMusicDao;
 import com.music.song.service.CollectMusicService;
 import org.springframework.stereotype.Service;

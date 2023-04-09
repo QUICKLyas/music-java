@@ -1,8 +1,8 @@
 package com.music.song.service.impl;
 
-import com.music.commons.pojo.CodeEnum;
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.TagCondition;
+import com.music.commons.pojo.menu.CodeEnum;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.TagCondition;
 import com.music.song.dao.Tag4SongDao;
 import com.music.song.pojo.Song8Tag;
 import com.music.song.service.Tag4SongService;

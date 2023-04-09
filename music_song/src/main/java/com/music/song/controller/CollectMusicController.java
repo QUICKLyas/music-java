@@ -1,9 +1,9 @@
 package com.music.song.controller;
 
-import com.music.commons.pojo.Exits;
-import com.music.commons.pojo.Result;
-import com.music.commons.pojo.ResultData;
-import com.music.pojo.reqbody.Favorites;
+import com.music.commons.pojo.resbody.Exits;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.resbody.ResultData;
+import com.music.commons.pojo.reqbody.Favorites;
 import com.music.song.service.CollectMusicService;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +34,6 @@ public class CollectMusicController {
     @PostMapping("/song")
     public ResultData getRandomMusicBy() {
 
-
+        return null;
     }
 }

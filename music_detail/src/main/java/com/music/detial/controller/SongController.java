@@ -1,6 +1,5 @@
 package com.music.detial.controller;
 
-import com.music.commons.pojo.Result;
 import com.music.pojo.SongDetail;
 import com.music.detial.service.SongService;
 import javax.annotation.Resource;

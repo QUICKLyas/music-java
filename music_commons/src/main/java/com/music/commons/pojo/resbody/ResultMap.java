@@ -1,4 +1,4 @@
-package com.music.commons.pojo;
+package com.music.commons.pojo.resbody;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +9,14 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 项目中的返回结果类型
+ * 针对map类型的result
+ * 或者是对象类型
+ * @param <T>
  */
 @Data
 @NoArgsConstructor //无参构造
 @AllArgsConstructor // 有参构造方法
-public class Result<T> implements Serializable {
+public class ResultMap<T> implements Serializable {
     private Integer status; // 返回正常时: 200
     @Nullable
     private Boolean success;
@@ -23,5 +25,5 @@ public class Result<T> implements Serializable {
     @Nullable
     private String message;
     @Nullable
-    private List<T> result;
+    private T result;
 }

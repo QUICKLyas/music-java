@@ -1,7 +1,7 @@
 package com.music.search.service.impl;
 
-import com.music.commons.pojo.CodeEnum;
-import com.music.commons.pojo.Result;
+import com.music.commons.pojo.menu.CodeEnum;
+import com.music.commons.pojo.resbody.Result;
 import com.music.commons.utils.ListUtils;
 import com.music.commons.utils.ObjectUtils;
 import com.music.search.dao.SongDetailRepository;

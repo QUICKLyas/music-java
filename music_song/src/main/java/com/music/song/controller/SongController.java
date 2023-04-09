@@ -1,14 +1,13 @@
 package com.music.song.controller;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.Favorites;
-import com.music.pojo.reqbody.NextPrevious;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.NextPrevious;
+import com.music.commons.pojo.resbody.ResultMap;
 import com.music.song.service.SongService;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 import static com.music.commons.utils.DataUtils.time;
-import static com.music.commons.utils.DataUtils.timeUTC;
 
 
 @RestController // 自动增加ResponseBody
@@ -18,6 +17,15 @@ public class SongController {
     @Resource
     private SongService songService;
 
+    /**
+     * 随机获取一首歌曲
+     * @return
+     */
+    @RequestMapping(value = "",method = RequestMethod.POST)
+    public ResultMap getRandomSong() {
+        System.out.println("["+time()+"]: " +"catch one song from mongo...");
+        return songService.getRandomSong();
+    }
 
 
 

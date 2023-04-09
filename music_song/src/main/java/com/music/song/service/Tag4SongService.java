@@ -1,10 +1,8 @@
 package com.music.song.service;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.TagCondition;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.TagCondition;
 import com.music.song.pojo.Song8Tag;
-
-import javax.annotation.Resource;
 
 public interface Tag4SongService {
     Result<Song8Tag> getSong(TagCondition tagCondition);

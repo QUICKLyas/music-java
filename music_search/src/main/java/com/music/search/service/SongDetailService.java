@@ -2,7 +2,7 @@ package com.music.search.service;
 
 //import org.springframework.core.annotation.Order;
 
-import com.music.commons.pojo.Result;
+import com.music.commons.pojo.resbody.Result;
 import com.music.search.pojo.SongDetail4ES;
 import com.music.search.pojo.SongResult;
 import org.springframework.data.domain.Page;

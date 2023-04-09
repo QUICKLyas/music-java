@@ -1,7 +1,7 @@
 package com.music.search.controller;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.SearchCondition;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.SearchCondition;
 import com.music.search.pojo.SongDetail4ES;
 import com.music.search.service.SongDetailService;
 import org.springframework.web.bind.annotation.*;

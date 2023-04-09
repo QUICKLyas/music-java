@@ -1,7 +1,7 @@
 package com.music.recommendation.controller;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.RecommendationCondition;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.RecommendationCondition;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin

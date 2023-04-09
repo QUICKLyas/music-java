@@ -1,10 +1,9 @@
 package com.music.song.dao.impl;
 
-import com.music.commons.pojo.CodeEnum;
-import com.music.commons.pojo.Keys;
+import com.music.commons.pojo.menu.CodeEnum;
+import com.music.commons.pojo.menu.Keys;
 import com.music.song.dao.CollectMusicDao;
 import com.music.song.pojo.Like;
-import com.music.song.pojo.Song;
 import com.music.song.pojo.SongDetail;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;

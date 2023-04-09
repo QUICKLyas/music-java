@@ -1,9 +1,8 @@
 package com.music.recommendation.service;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.RecommendationCondition;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.RecommendationCondition;
 import com.music.recommendation.pojo.Recommendation;
-import org.springframework.web.bind.annotation.RequestBody;
 
 public interface RecommendationService {
     /**

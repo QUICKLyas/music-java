@@ -1,7 +1,7 @@
 package com.music.recommendation.service.impl;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.RecommendationCondition;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.RecommendationCondition;
 import com.music.recommendation.pojo.Recommendation;
 import com.music.recommendation.service.RecommendationService;
 import org.springframework.stereotype.Service;

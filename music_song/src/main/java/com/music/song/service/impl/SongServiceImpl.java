@@ -1,11 +1,11 @@
 package com.music.song.service.impl;
 
-import com.music.commons.pojo.CodeEnum;
-import com.music.commons.pojo.Keys;
-import com.music.commons.pojo.Result;
+import com.music.commons.pojo.menu.CodeEnum;
+import com.music.commons.pojo.menu.Keys;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.resbody.ResultMap;
 import com.music.song.dao.SongDao;
-import com.music.pojo.reqbody.Favorites;
-import com.music.pojo.reqbody.NextPrevious;
+import com.music.commons.pojo.reqbody.NextPrevious;
 import com.music.song.service.SongService;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,13 @@ public class SongServiceImpl implements SongService {
     private SongDao songDao;
 
 
-
+    @Override
+    public ResultMap<Map> getRandomSong() {
+        List<Map> result = songDao.getRandomSong();
+        return result.size() != 1 ?
+                new ResultMap<>(CodeEnum.SUCCESS.getCode(),true, null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),result.get(0)):
+                new ResultMap<>(CodeEnum.SUCCESS.getCode(), true,null,CodeEnum.SUCCESS.getDesc(), result.get(0));
+    }
 
     /**
      * 本方法根据playlistId 确定是获取状态，如果playlistId没有数据，说明是要随机获取歌曲
@@ -30,7 +36,7 @@ public class SongServiceImpl implements SongService {
     @Override
     public Result<Map> getNextSongFromCollectionPlaylist(NextPrevious jsonSrc) {
         List<Map> results = songDao.getNextSongFromCollectionPlaylist(jsonSrc.getPlaylistId(), jsonSrc.getMusicId());
-        return results.get(0).keySet().contains(Keys.KEY_ANSWER.getKey())?
+        return results.get(0).containsKey(Keys.KEY_ANSWER.getKey())?
                 new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false, null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
                 new Result<>(CodeEnum.SUCCESS.getCode(), true,null,CodeEnum.SUCCESS.getDesc(), results);
     }
@@ -38,7 +44,7 @@ public class SongServiceImpl implements SongService {
     @Override
     public Result<Map> getPreviousSongFromCollectionPlayList(NextPrevious jsonSrc) {
         List<Map> results = songDao.getPreviousSongFromCollectionPlaylist(jsonSrc.getPlaylistId(), jsonSrc.getMusicId());
-        return results.get(0).keySet().contains(Keys.KEY_ANSWER.getKey())?
+        return results.get(0).containsKey(Keys.KEY_ANSWER.getKey())?
                 new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), false,null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),results):
                 new Result<>(CodeEnum.SUCCESS.getCode(), true,null, CodeEnum.SUCCESS.getDesc(), results);
     }

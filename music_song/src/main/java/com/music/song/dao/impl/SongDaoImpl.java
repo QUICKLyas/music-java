@@ -1,9 +1,7 @@
 package com.music.song.dao.impl;
 
-import com.ctc.wstx.shaded.msv_core.relaxns.reader.IncludeGrammarState;
-import com.music.commons.pojo.CodeEnum;
-import com.music.commons.pojo.Keys;
-import com.music.song.pojo.Like;
+import com.music.commons.pojo.menu.CodeEnum;
+import com.music.commons.pojo.menu.Keys;
 import com.music.song.dao.SongDao;
 import com.music.song.pojo.PlaylistDetail;
 import com.music.song.pojo.Song;
@@ -11,13 +9,11 @@ import com.music.song.pojo.SongDetail;
 import javax.annotation.Resource;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +25,28 @@ import static com.music.commons.utils.ListUtils.makeListKeyId;
 public class SongDaoImpl implements SongDao {
     @Resource
     MongoTemplate mongoTemplate;
+
+    /**
+     * 随机获取歌曲一首
+     * @return
+     */
+    @Override
+    public List<Map> getRandomSong() {
+        Map<String,Object> resultMap = new HashMap<>(1);
+        List<Map> resultList = new ArrayList<>(1); // 默认是由一个返回的数据
+        // 随机获取一首歌曲
+        Aggregation aggregation = Aggregation.newAggregation(Aggregation.sample(1));
+        AggregationResults<Song> songA = mongoTemplate.aggregate(aggregation,Song.class,Song.class);
+        Song song = songA.getMappedResults().get(0);
+        resultMap.put("id",song.getId());
+        resultMap.put("name",song.getName());
+        // 用不上，前端通过id 直接通过另一个服务获取
+        // resultMap.put("songUrl",song.getSongUrl());
+        resultMap.put("songAble",song.getSongAble());
+        resultMap.put("tags",song.getTags());
+        resultList.add(resultMap);
+        return resultList;
+    }
 
     /**
      * 当前的方法是为了从数据库中获取一首歌 的 下一首

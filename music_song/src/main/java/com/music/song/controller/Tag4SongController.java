@@ -1,7 +1,7 @@
 package com.music.song.controller;
 
-import com.music.commons.pojo.Result;
-import com.music.pojo.reqbody.TagCondition;
+import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.reqbody.TagCondition;
 import com.music.song.pojo.Song8Tag;
 import com.music.song.service.Tag4SongService;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 import static com.music.commons.utils.DataUtils.time;
-import static com.music.commons.utils.DataUtils.timeUTC;
 
 @RestController
 @CrossOrigin
