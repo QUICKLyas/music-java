@@ -3,18 +3,18 @@ package com.music.song.service.impl;
 import com.music.commons.pojo.menu.CodeEnum;
 import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.reqbody.TagCondition;
-import com.music.song.dao.Tag4SongDao;
+import com.music.song.dao.SongWithTagDao;
 import com.music.song.pojo.Song8Tag;
-import com.music.song.service.Tag4SongService;
+import com.music.song.service.SongWithTagService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class Tag4SongServiceImpl implements Tag4SongService {
+public class SongWithTagServiceImpl implements SongWithTagService {
     @Resource
-    Tag4SongDao songDao;
+    SongWithTagDao songDao;
 
     /**
      * 默认传输的可以是 空

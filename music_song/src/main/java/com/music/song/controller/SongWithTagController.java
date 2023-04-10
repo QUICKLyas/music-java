@@ -3,7 +3,7 @@ package com.music.song.controller;
 import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.reqbody.TagCondition;
 import com.music.song.pojo.Song8Tag;
-import com.music.song.service.Tag4SongService;
+import com.music.song.service.SongWithTagService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -13,15 +13,14 @@ import static com.music.commons.utils.DataUtils.time;
 @RestController
 @CrossOrigin
 @RequestMapping("/tag")
-public class Tag4SongController {
+public class SongWithTagController {
     @Resource
-    Tag4SongService tag4SongService;
-    @PostMapping("/")
+    SongWithTagService tag4SongService;
+    @PostMapping("/default")
     public Result getSongByTag(@RequestBody TagCondition tag){
         System.out.println("["+time()+"]: "+"request body's json = " + tag);
         Result<Song8Tag> result;
-        result = tag4SongService.getSong(tag);
-        return result;
+        return tag4SongService.getSong(tag);
     }
 
     /**
