@@ -17,7 +17,8 @@ import java.util.Map;
 public class TestPlayListDao {
     @Autowired
     PlayListDao playListDao;
-
+    @Autowired
+    PlayListWithTagDao playListWithTagDao;
     @Test
     public void getDefaultDao(){
 
@@ -34,4 +35,13 @@ public class TestPlayListDao {
         tags.add("BLUE");
         playListDao.getPlayListCatFromMongo(tags,1);
     }
+    @Test
+    public void testPlayListWithTag(){
+        String tag = "ACG";
+        List<PlayList> playLists = playListWithTagDao.getPlayListFromMongo(tag,null,null);
+        for (PlayList playList : playLists) {
+            System.out.println(playList.toString());
+        }
+    }
+
 }

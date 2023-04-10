@@ -19,7 +19,6 @@ public class SongWithTagController {
     @PostMapping("/default")
     public Result getSongByTag(@RequestBody TagCondition tag){
         System.out.println("["+time()+"]: "+"request body's json = " + tag);
-        Result<Song8Tag> result;
         return tag4SongService.getSong(tag);
     }
 
