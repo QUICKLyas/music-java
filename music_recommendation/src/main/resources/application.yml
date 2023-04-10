@@ -1,0 +1,21 @@
+music:
+  song:
+    nginx:
+      server: http://139.224.66.83:8888
+spring:
+  application:
+    name: music-song
+  profiles:
+    active: mongodb
+server:
+  port: 9000 # song
+eureka:
+  instance:
+    prefer-ip-address: true
+#    ip-address: 139.224.66.83
+  client:
+    service-url:
+      defaultZone: http://139.224.66.83:8761/eureka
+
+
+

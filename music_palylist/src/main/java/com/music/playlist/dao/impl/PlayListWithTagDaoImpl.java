@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Repository
-public class PlayListWithDaoImpl implements PlayListWithTagDao {
+public class PlayListWithTagDaoImpl implements PlayListWithTagDao {
     @Resource
     private MongoTemplate mongoTemplate;
     @Override

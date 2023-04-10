@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/r/p") // recommend/playlist
-public class RecommendPlayListController {
-    @PostMapping("/")
+@RequestMapping("/recommend") // recommend/playlist
+public class RecommendController {
+    @PostMapping("/song")
     public Result getUserPlayListRecommendation(@RequestBody RecommendationCondition recommendationCondition) {
+        // 检查数据
         return null;
     }
     @PostMapping("/random")
