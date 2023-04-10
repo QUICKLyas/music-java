@@ -7,6 +7,8 @@ import com.music.song.pojo.PlaylistDetail;
 import com.music.song.pojo.Song;
 import com.music.song.pojo.SongDetail;
 import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.stereotype.Repository;
@@ -25,27 +27,34 @@ import static com.music.commons.utils.ListUtils.makeListKeyId;
 public class SongDaoImpl implements SongDao {
     @Resource
     MongoTemplate mongoTemplate;
+    @Value("${song.default.one}")
+    private Integer one;
+    @Value("${song.default.some}")
+    private Integer some;
 
     /**
      * 随机获取歌曲一首
      * @return
      */
     @Override
-    public List<Map> getRandomSong() {
-        Map<String,Object> resultMap = new HashMap<>(1);
-        List<Map> resultList = new ArrayList<>(1); // 默认是由一个返回的数据
+    public List<Song> getRandomSong() {
         // 随机获取一首歌曲
-        Aggregation aggregation = Aggregation.newAggregation(Aggregation.sample(1));
+        Aggregation aggregation = Aggregation.newAggregation(Aggregation.sample(one));
         AggregationResults<Song> songA = mongoTemplate.aggregate(aggregation,Song.class,Song.class);
-        Song song = songA.getMappedResults().get(0);
-        resultMap.put("id",song.getId());
-        resultMap.put("name",song.getName());
-        // 用不上，前端通过id 直接通过另一个服务获取
-        // resultMap.put("songUrl",song.getSongUrl());
-        resultMap.put("songAble",song.getSongAble());
-        resultMap.put("tags",song.getTags());
-        resultList.add(resultMap);
-        return resultList;
+        List<Song> resultSong = songA.getMappedResults();
+        return resultSong;
+    }
+
+    /**
+     * 随机获取一定数量的歌曲
+     * @return
+     */
+    @Override
+    public List<Song> getRandomSomeSongs() {
+        Aggregation aggregation = Aggregation.newAggregation(Aggregation.sample(some));
+        AggregationResults<Song> songA = mongoTemplate.aggregate(aggregation,Song.class,Song.class);
+        List<Song> resultSong = songA.getMappedResults();
+        return resultSong;
     }
 
     /**

@@ -5,6 +5,7 @@ import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.resbody.ResultData;
 import com.music.commons.pojo.reqbody.Favorites;
 import com.music.song.service.CollectMusicService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ public class CollectMusicController {
     @RequestMapping(value = "",method = RequestMethod.POST)
     public Result insertSongLike(@RequestBody Favorites jsons) {
         System.out.println("["+time()+"]: "+"request body's json = " + jsons);
+
         return collectMusicService.collectSongToCollectionLike(jsons);
     }
     /**

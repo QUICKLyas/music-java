@@ -27,6 +27,42 @@ public class PlayListDaoImpl implements PlayListDao {
     MongoTemplate mongoTemplate;
     @Value("${playlist.tag.size}")
     private Integer size;
+    @Value("${playlist.default.one}")
+    private Integer one;
+    @Value("${playlist.default.some}")
+    private Integer some;
+
+    /**
+     * 随机获取一个歌单列表
+     * @return
+     */
+    @Override
+    public List<PlayList> getRandomPlayList() {
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.sample(one)
+        );
+        AggregationResults<PlayList> playListsA = mongoTemplate.aggregate(aggregation,PlayList.class,PlayList.class);
+
+        return playListsA.getMappedResults();
+    }
+
+    /**
+     * 随机获取一定数量的歌单数据
+     * @return
+     */
+    @Override
+    public List<PlayList> getRandomSomePlayList() {
+        Aggregation aggregation = Aggregation.newAggregation(
+//                Aggregation.project("_id","id","name","coverImgUrl",
+//                        "coverImgId","description","tags","playCount",
+//                        "creator","subscribers"),
+                Aggregation.sample(size)
+        );
+        AggregationResults<PlayList> playListA = mongoTemplate.aggregate(aggregation,PlayList.class,PlayList.class);
+        return playListA.getMappedResults();
+    }
+
+
 
     /**
      * 首先会有一个默认size值，确定需要获取的playlist 大小  15

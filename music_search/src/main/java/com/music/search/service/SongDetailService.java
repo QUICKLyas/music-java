@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface SongDetailService {
-    void savAll(List<SongDetail4ES> songDetails);
+    void saveAll(List<SongDetail4ES> songDetails);
     SongDetail4ES findById(Integer id);
     void deleteById(Integer id);
     void updateById(SongDetail4ES songDetail);

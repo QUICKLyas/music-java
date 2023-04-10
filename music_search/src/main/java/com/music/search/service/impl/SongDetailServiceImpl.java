@@ -26,11 +26,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.music.commons.utils.DataUtils.timeUTC;
+import static com.music.commons.utils.DataUtils.time;
 
 @Service
 @Slf4j
-public class SongDetailImpl implements SongDetailService {
+public class SongDetailServiceImpl implements SongDetailService {
     // 自动注入
     @Resource
     SongDetailRepository songDetailRepository ;
@@ -86,7 +86,7 @@ public class SongDetailImpl implements SongDetailService {
         return new Result<SongResult>(CodeEnum.SUCCESS.getCode(),true,null,CodeEnum.SUCCESS.getDesc(),results);
     }
     @Override
-    public void savAll(List<SongDetail4ES> songDetails) {
+    public void saveAll(List<SongDetail4ES> songDetails) {
         songDetailRepository.saveAll(songDetails);
     }
 
@@ -121,21 +121,20 @@ public class SongDetailImpl implements SongDetailService {
     @Override
     public Page<SongDetail4ES> findAll(Integer pageIndex, Integer pageSize) {
         Page<SongDetail4ES> page = songDetailRepository.findAll(PageRequest.of(pageIndex,pageSize));
-        System.out.println("["+timeUTC()+"]: "+"page-"+page);
+        System.out.println("["+time()+"]: "+"page-"+page);
         return null;
     }
 
     @Override
     public Page<SongDetail4ES> findSong(SongDetail4ES songDetail, Integer pageIndex, Integer pageSize) {
         if(songDetail == null) {
-            System.out.println("NULL");
+            System.out.println("songDetail's size is 0: NULL");
         }
 
         CriteriaQuery criteriaQuery = new CriteriaQuery(new Criteria()
                 .and(new Criteria("id").is(songDetail.getId()))
                 .and(new Criteria("name").contains(songDetail.getName())))
                 .setPageable(PageRequest.of(pageIndex,pageSize));
-
         return null;
     }
 }

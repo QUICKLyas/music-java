@@ -8,16 +8,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.music.commons.utils.DataUtils.timeUTC;
+import static com.music.commons.utils.DataUtils.time;
 
 @RestController
 @CrossOrigin
+@RequestMapping(value = "/search")
 public class SearchController {
     @Resource
     private SongDetailService songDetailService;
-    @PostMapping("/search")
+    @PostMapping("")
     public Result SearchSongByName(@RequestBody SearchCondition searchCondition) {
-        System.out.println("["+timeUTC()+"]: "+"request body's json= " + searchCondition);
+        System.out.println("["+time()+"]: "+"request body's json= " + searchCondition);
         SongDetail4ES songDetail = new SongDetail4ES();
         songDetail.setName(searchCondition.getMusicName());
         return songDetailService.findSongByName(songDetail,searchCondition.getPageIndex(),searchCondition.getPageSize());

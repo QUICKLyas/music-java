@@ -21,13 +21,27 @@ public class SongController {
      * 随机获取一首歌曲
      * @return
      */
-    @RequestMapping(value = "",method = RequestMethod.POST)
+    @RequestMapping(value = "/one",method = RequestMethod.POST)
     public ResultMap getRandomSong() {
         System.out.println("["+time()+"]: " +"catch one song from mongo...");
         return songService.getRandomSong();
     }
 
-
+    /**
+     * 随机获取一定数量的歌曲
+     * @return
+     */
+    @RequestMapping(value = "/some",method = RequestMethod.POST)
+    public Result getRandomSomeSongs() {
+        System.out.println("["+time()+"]: " +"catch some songs from mongo...");
+        return songService.getRandomSomeSongs();
+    }
+    /**
+     *     let collectData = await catchPLByCat.aggregate(
+     *       [
+     *         {$sample: {size: 15}},
+     *       ]).toArray();
+     */
 
 
     /**

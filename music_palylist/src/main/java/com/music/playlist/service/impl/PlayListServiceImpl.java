@@ -3,6 +3,8 @@ package com.music.playlist.service.impl;
 import com.music.commons.pojo.menu.CodeEnum;
 import com.music.commons.pojo.DataR;
 import com.music.commons.pojo.resbody.Result;
+import com.music.commons.pojo.resbody.ResultData;
+import com.music.commons.pojo.resbody.ResultMap;
 import com.music.playlist.dao.PlayListDao;
 import com.music.playlist.pojo.PlayList;
 import com.music.playlist.service.PlayListService;
@@ -21,12 +23,22 @@ public class PlayListServiceImpl implements PlayListService {
     private PlayListDao playListDao;
 
 
+
+
     @Override
-    public Result<Map> getDefaultPlayList() {
-        List<Map> results = playListDao.getDefaultPlayListFromCollectionPlayLists();
+    public ResultMap<PlayList> getRandomPlayList() {
+        List<PlayList> result = playListDao.getRandomPlayList();
+        return result.size() <= 0 ?
+                new ResultMap<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false,null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(), null):
+                new ResultMap<>(CodeEnum.SUCCESS.getCode(), true,null,CodeEnum.SUCCESS.getDesc(), result.get(0));
+    }
+
+    @Override
+    public ResultData<PlayList> getRandomSomePlayList() {
+        List<PlayList> results = playListDao.getRandomSomePlayList();
         return results.size() <= 0 ?
-                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(), false, CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(), results) :
-                new Result<>(CodeEnum.SUCCESS.getCode(), true, CodeEnum.SUCCESS.getDesc(), results);
+                new ResultData<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),null,null):
+                new ResultData<>(CodeEnum.SUCCESS.getCode(),true,CodeEnum.SUCCESS.getDesc(), null,results);
     }
 
     @Override

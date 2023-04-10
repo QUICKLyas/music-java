@@ -6,8 +6,11 @@ import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.resbody.ResultMap;
 import com.music.song.dao.SongDao;
 import com.music.commons.pojo.reqbody.NextPrevious;
+import com.music.song.pojo.Song;
 import com.music.song.service.SongService;
 import javax.annotation.Resource;
+
+import org.bson.types.Code;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -19,11 +22,19 @@ public class SongServiceImpl implements SongService {
 
 
     @Override
-    public ResultMap<Map> getRandomSong() {
-        List<Map> result = songDao.getRandomSong();
-        return result.size() != 1 ?
-                new ResultMap<>(CodeEnum.SUCCESS.getCode(),true, null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),result.get(0)):
+    public ResultMap<Song> getRandomSong() {
+        List<Song> result = songDao.getRandomSong();
+        return result.size() <= 0 ?
+                new ResultMap<>(CodeEnum.SUCCESS.getCode(),true, null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),null):
                 new ResultMap<>(CodeEnum.SUCCESS.getCode(), true,null,CodeEnum.SUCCESS.getDesc(), result.get(0));
+    }
+
+    @Override
+    public Result<Song> getRandomSomeSongs() {
+        List<Song> results = songDao.getRandomSomeSongs();
+        return results.size() <=0 ?
+                new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),false,null,CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(), null):
+                new Result<>(CodeEnum.SUCCESS.getCode(), true,null,CodeEnum.SUCCESS.getDesc(), results);
     }
 
     /**
