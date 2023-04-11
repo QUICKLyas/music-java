@@ -21,5 +21,5 @@ public class RecommendationCondition {
     @Nullable
     private Integer flag;
     private Integer pageIndex = 0;
-    private Integer pageSize = 20;
+    private Integer pageSize = 30;
 }

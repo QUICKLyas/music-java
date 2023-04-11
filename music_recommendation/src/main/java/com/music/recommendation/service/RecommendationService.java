@@ -16,5 +16,7 @@ public interface RecommendationService {
 //    Result
     Result<Recommendation> getRecommendations(Integer userId);
     Result<Recommendation> getRecommendationS(RecommendationCondition recommendationCondition);
+    Result<Recommendation> getRecommendationRandomS(RecommendationCondition recommendationCondition);
+
     Result<Recommendation> getRecommendationPL(RecommendationCondition recommendationCondition);
 }

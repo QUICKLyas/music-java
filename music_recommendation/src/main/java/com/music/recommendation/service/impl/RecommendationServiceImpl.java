@@ -1,5 +1,6 @@
 package com.music.recommendation.service.impl;
 
+import com.music.commons.pojo.menu.CodeEnum;
 import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.reqbody.RecommendationCondition;
 import com.music.recommendation.pojo.Recommendation;
@@ -24,12 +25,15 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Override
     public Result<Recommendation> getRecommendationS(RecommendationCondition recommendationCondition) {
         if(recommendationCondition.getUserId() == null) {
-            //
-        } else {
-
-
-
+            // 返回错误报文
+            return new Result<>(CodeEnum.BAD_REQUEST.getCode(),false,null,CodeEnum.BAD_REQUEST.getDesc(), null);
         }
+
+        return null;
+    }
+
+    @Override
+    public Result<Recommendation> getRecommendationRandomS(RecommendationCondition recommendationCondition) {
         return null;
     }
 
