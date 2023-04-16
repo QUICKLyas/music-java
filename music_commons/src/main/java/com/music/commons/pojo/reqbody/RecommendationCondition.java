@@ -12,14 +12,10 @@ import javax.annotation.Nullable;
 public class RecommendationCondition {
 
     private String userId;
-
-
-
     // 2 user
     // 1 song
     // 0 playlist
-    @Nullable
-    private Integer flag;
+    private Integer flag = 2;
     private Integer pageIndex = 0;
     private Integer pageSize = 30;
 }

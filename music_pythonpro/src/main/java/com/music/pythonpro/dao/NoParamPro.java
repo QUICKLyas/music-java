@@ -5,6 +5,7 @@ import com.music.pythonpro.pojo.CFP;
 
 import java.io.IOException;
 
+import static com.music.commons.utils.DataUtils.time;
 import static com.music.commons.utils.DataUtils.timeUTC;
 
 public class NoParamPro extends ProExample {
@@ -24,7 +25,7 @@ public class NoParamPro extends ProExample {
         try {
             proEntry();
         } catch (Exception e) {
-            System.out.println("["+timeUTC()+"]: "+e.getClass());
+            System.out.println("["+time()+"]: "+e.getClass());
             // 表示出现了问题，需要返回问题
             return e;
         }

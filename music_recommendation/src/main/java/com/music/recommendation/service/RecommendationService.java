@@ -14,9 +14,9 @@ public interface RecommendationService {
      * @return
      */
 //    Result
-    Result<Recommendation> getRecommendations(Integer userId);
-    Result<Recommendation> getRecommendationS(RecommendationCondition recommendationCondition);
-    Result<Recommendation> getRecommendationRandomS(RecommendationCondition recommendationCondition);
-
-    Result<Recommendation> getRecommendationPL(RecommendationCondition recommendationCondition);
+    Result<Recommendation> getRecommendations(RecommendationCondition recommendationCondition);
+//    Result<Recommendation> getRecommendationS(RecommendationCondition recommendationCondition);
+//    Result<Recommendation> getRecommendationRandom(RecommendationCondition recommendationCondition);
+    Result<Recommendation> getRecommendationsRandom(RecommendationCondition recommendationCondition);
+//    Result<Recommendation> getRecommendationPL(RecommendationCondition recommendationCondition);
 }

@@ -1,7 +1,7 @@
 package com.music.recommendation.dao.impl;
 
 import com.music.recommendation.dao.RecommendationDao;
-import com.music.recommendation.pojo.RecomendSong;
+import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -37,7 +37,22 @@ public class RecommendationDaoImpl implements RecommendationDao {
         return Collections.singletonList(songIdList);
     }
 
-    private List<RecomendSong> getSongById(List<Integer> ids) {
+    @Override
+    public List<Object> getRecommendationPL(String userId, @Nullable Integer pageIndex, @Nullable Integer pageSize) {
         return null;
     }
+
+    @Override
+    public List<Object> getRecommendationRandomS(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
+        return null;
+    }
+
+    @Override
+    public List<Object> getRecommendationRandomPL(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
+        return null;
+    }
+//
+//    private List<RecommendSong> getSongById(List<Integer> ids) {
+//        return null;
+//    }
 }
