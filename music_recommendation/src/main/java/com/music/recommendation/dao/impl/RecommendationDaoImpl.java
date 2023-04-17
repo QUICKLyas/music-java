@@ -4,6 +4,10 @@ import com.music.recommendation.dao.RecommendationDao;
 import com.music.recommendation.pojo.RecommendPLayList;
 import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
@@ -23,7 +27,8 @@ public class RecommendationDaoImpl implements RecommendationDao {
 
     @Resource
     private MongoTemplate mongoTemplate;
-
+    @Value("${song.tag.number}")
+    int tagSize;
     @Override
     public List<RecommendSong.Song> getRecommendationS(String userId, @Nullable Integer pageIndex, @Nullable Integer pageSize) {
         // 实现数据的获取
@@ -66,10 +71,13 @@ public class RecommendationDaoImpl implements RecommendationDao {
         /*
             首先获取entrySet 本身数据量稳定的不超过100
          */
-        sortHashMapByValue(tagsRate);
-//        System.out.println(returnResult);
-//        System.out.println("\nAfter sorting ascending order......");
-//        printMap(sortedMapAsc);
+
+        List<String> tags = sortHashMapByValue(tagsRate,tagSize);
+        Query query = Query.query(
+                Criteria.where("tags").in(tags)
+        );
+        Pageable pageable = new PageRequest(pageIndex==null?0:pageIndex,pageSize ==null?);
+
         return null;
     }
 

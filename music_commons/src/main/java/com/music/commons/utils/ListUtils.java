@@ -22,12 +22,14 @@ public class ListUtils {
         return returnResult;
     }
 
-    public static List<Entry<String,Double>> sortHashMapByValue(HashMap<String,Double> map) {
+    public static List<String> sortHashMapByValue(HashMap<String,Double> map, Integer tagSize ) {
         List<Entry<String,Double>> list = new ArrayList<>(map.entrySet());
-        Collections.sort(list,((o1, o2) -> (int) ((o2.getValue() - o1.getValue()) * 10000)));
-
+        list.sort(((o1, o2) -> (int) ((o2.getValue() - o1.getValue()) * 10000)));
+        List<String> tagString = new ArrayList<>(tagSize);
         System.out.println(list);
-        
-        return list;
+        for (int i = 0 ; i < tagSize ; i++) {
+            tagString.add(i, list.get(i).getKey());
+        }
+        return tagString;
     }
 }
