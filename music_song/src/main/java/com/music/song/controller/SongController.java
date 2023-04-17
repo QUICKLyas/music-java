@@ -7,7 +7,7 @@ import com.music.song.service.SongService;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
-import static com.music.commons.utils.DataUtils.time;
+import static com.music.commons.utils.DateUtils.time;
 
 
 @RestController // 自动增加ResponseBody

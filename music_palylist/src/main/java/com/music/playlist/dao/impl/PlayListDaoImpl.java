@@ -15,11 +15,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static com.music.commons.utils.DataUtils.timeUTC;
+import static com.music.commons.utils.DateUtils.timeUTC;
 
 @Repository
 public class PlayListDaoImpl implements PlayListDao {

@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.music.commons.utils.DataUtils.time;
-import static com.music.commons.utils.DataUtils.timeUTC;
+import static com.music.commons.utils.DateUtils.time;
 
 
 public class ParamPro extends ProExample {

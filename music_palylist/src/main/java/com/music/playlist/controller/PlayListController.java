@@ -1,18 +1,15 @@
 package com.music.playlist.controller;
 
 import com.music.commons.pojo.DataR;
-import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.resbody.ResultData;
 import com.music.commons.pojo.resbody.ResultMap;
-import com.music.playlist.pojo.PlayList;
 import com.music.playlist.service.PlayListService;
 import javax.annotation.Resource;
 
 import com.music.commons.pojo.reqbody.TagCondition;
 import org.springframework.web.bind.annotation.*;
 
-import static com.music.commons.utils.DataUtils.time;
-import static com.music.commons.utils.DataUtils.timeUTC;
+import static com.music.commons.utils.DateUtils.time;
 
 @RestController
 @CrossOrigin

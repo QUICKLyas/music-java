@@ -16,6 +16,8 @@ import javax.annotation.Resource;
 import java.util.*;
 import java.util.Map.Entry;
 
+import static com.music.commons.utils.ListUtils.sortHashMapByValue;
+
 @Repository
 public class RecommendationDaoImpl implements RecommendationDao {
 
@@ -64,13 +66,8 @@ public class RecommendationDaoImpl implements RecommendationDao {
         /*
             首先获取entrySet 本身数据量稳定的不超过100
          */
-        List<Double> returnResult = new LinkedList<Double>();
-        Set<Entry<String,Double>> entrySet = tagsRate.entrySet();
-        Iterator<Entry<String,Double>> iterator = entrySet.iterator();
-        while (iterator.hasNext()) {
-            returnResult.add(iterator.next().getValue());
-        }
-        
+        sortHashMapByValue(tagsRate);
+//        System.out.println(returnResult);
 //        System.out.println("\nAfter sorting ascending order......");
 //        printMap(sortedMapAsc);
         return null;

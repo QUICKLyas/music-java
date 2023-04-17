@@ -5,12 +5,11 @@ import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.resbody.ResultData;
 import com.music.commons.pojo.reqbody.Favorites;
 import com.music.song.service.CollectMusicService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.music.commons.utils.DataUtils.time;
+import static com.music.commons.utils.DateUtils.time;
 
 @RestController
 @CrossOrigin

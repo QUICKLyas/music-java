@@ -5,8 +5,7 @@ import com.music.pythonpro.pojo.CFP;
 
 import java.io.IOException;
 
-import static com.music.commons.utils.DataUtils.time;
-import static com.music.commons.utils.DataUtils.timeUTC;
+import static com.music.commons.utils.DateUtils.time;
 
 public class NoParamPro extends ProExample {
     private CFP cmdArray;

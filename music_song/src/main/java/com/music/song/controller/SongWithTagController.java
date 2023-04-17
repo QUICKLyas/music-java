@@ -2,13 +2,12 @@ package com.music.song.controller;
 
 import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.reqbody.TagCondition;
-import com.music.song.pojo.Song8Tag;
 import com.music.song.service.SongWithTagService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.music.commons.utils.DataUtils.time;
+import static com.music.commons.utils.DateUtils.time;
 
 @RestController
 @CrossOrigin

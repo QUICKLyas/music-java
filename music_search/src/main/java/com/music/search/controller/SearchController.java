@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-import static com.music.commons.utils.DataUtils.time;
+import static com.music.commons.utils.DateUtils.time;
 
 @RestController
 @CrossOrigin
