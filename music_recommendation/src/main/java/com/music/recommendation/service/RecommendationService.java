@@ -2,6 +2,7 @@ package com.music.recommendation.service;
 
 import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.reqbody.RecommendationCondition;
+import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
 
 public interface RecommendationService {
@@ -14,7 +15,7 @@ public interface RecommendationService {
      * @return
      */
 //    Result
-    Result<Recommendation> getRecommendations(RecommendationCondition recommendationCondition);
+    Result<RecommendSong.Song> getRecommendations(RecommendationCondition recommendationCondition);
 //    Result<Recommendation> getRecommendationS(RecommendationCondition recommendationCondition);
 //    Result<Recommendation> getRecommendationRandom(RecommendationCondition recommendationCondition);
     Result<Recommendation> getRecommendationsRandom(RecommendationCondition recommendationCondition);

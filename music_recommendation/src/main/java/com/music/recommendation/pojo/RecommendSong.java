@@ -16,16 +16,16 @@ public class RecommendSong {
     @AllArgsConstructor
     @NoArgsConstructor
     @Document("song")
-    static class Song{
+    public static class Song{
         @Id
-        private Long _id;
+        private String _id;
         private Integer id;
         private String name;
         private List<String> tags;
         private Map<String,String> songAble;
         private String songUrl;
         private Map<String,Object> data;
-        private Integer mark;
+        private Long mark;
         private List<Integer> similaritySong;
     }
 
@@ -33,9 +33,9 @@ public class RecommendSong {
     @AllArgsConstructor
     @NoArgsConstructor
     @Document("songdetail")
-    static class SongDetail {
+    public static class SongDetail {
         @Id
-        private Long _id;
+        private String _id;
         private Integer id;
         private String name;
         private Map<String,String> songs;
