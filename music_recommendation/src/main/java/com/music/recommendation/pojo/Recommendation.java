@@ -18,7 +18,7 @@ public class Recommendation {
     private String _id;
     private String id;
     private String name;
-    private HashMap tagsRate;
+    private HashMap<String,Double> tagsRate;
     private List<String> recomUsers;
     private List<Integer> recomSong;
 }

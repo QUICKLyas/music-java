@@ -1,6 +1,8 @@
 package com.music.recommendation.dao;
 
 import com.music.recommendation.MusicRecommendationApplication;
+import com.music.recommendation.pojo.RecommendPLayList;
+import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +21,17 @@ public class TestDaoImpl {
 
     @Test
     public void TestRecommendSong() {
-        List<Object> recommendationIdList=recommendationDao.getRecommendationS("1a78b764b67911ed95dd00155dadb10b",null,null);
-        for (Object id : recommendationIdList) {
+        List<RecommendSong.Song> recommendationIdList=recommendationDao.getRecommendationS("1a78b764b67911ed95dd00155dadb10b",null,null);
+        for (RecommendSong.Song id : recommendationIdList) {
             System.out.println(id);
         }
+    }
+
+    @Test
+    public void TestRecommendPlayList () {
+        List<RecommendPLayList.PlayList> recommendationPl = recommendationDao.getRecommendationPL("1a78b764b67911ed95dd00155dadb10b",null,null);
+//        for (RecommendPLayList.PlayList item : recommendationPl) {
+//            System.out.println(item);
+//        }
     }
 }

@@ -1,7 +1,7 @@
 package com.music.recommendation.dao.impl;
 
-import com.music.pojo.SongDetail;
 import com.music.recommendation.dao.RecommendationDao;
+import com.music.recommendation.pojo.RecommendPLayList;
 import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,9 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Nullable;
 import javax.annotation.Resource;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.Map.Entry;
 
 @Repository
 public class RecommendationDaoImpl implements RecommendationDao {
@@ -42,19 +41,15 @@ public class RecommendationDaoImpl implements RecommendationDao {
             一种是批量地获取数据然后推荐给用户使用
             推荐使用第二种方式，提高数据库操作的效率
          */
-
         Query query = Query.query(Criteria.where("id").in(songIdList));
         List<RecommendSong.Song>  songs=mongoTemplate.find(query, RecommendSong.Song.class);
-//        for (RecommendSong.Song item : songs ) {
-//            System.out.println("item = " + item);
-//        }
         // 方法调用返回一个只包含指定对象的不可变列表。
         // return Collections.singletonList(songIdList);
         return songs;
     }
 
     @Override
-    public List<Object> getRecommendationPL(String userId, @Nullable Integer pageIndex, @Nullable Integer pageSize) {
+    public List<RecommendPLayList.PlayList> getRecommendationPL(String userId, @Nullable Integer pageIndex, @Nullable Integer pageSize) {
         // 实现数据的获取
         // 通过userId获取对应用户的信息
         Criteria criteria = new Criteria();
@@ -64,17 +59,44 @@ public class RecommendationDaoImpl implements RecommendationDao {
         );
         AggregationResults<Recommendation> recommendations = mongoTemplate.aggregate(aggregation,Recommendation.class,Recommendation.class);
         Recommendation recommendation = recommendations.getMappedResults().get(0);
-        List<Integer> songIdList = recommendation.getRecomSong();
+        HashMap<String,Double> tagsRate = recommendation.getTagsRate();
+        System.out.println(tagsRate);
+        /*
+            首先获取entrySet 本身数据量稳定的不超过100
+         */
+        List<Double> returnResult = new LinkedList<Double>();
+        Set<Entry<String,Double>> entrySet = tagsRate.entrySet();
+        Iterator<Entry<String,Double>> iterator = entrySet.iterator();
+        while (iterator.hasNext()) {
+            returnResult.add(iterator.next().getValue());
+        }
+        
+//        System.out.println("\nAfter sorting ascending order......");
+//        printMap(sortedMapAsc);
         return null;
     }
 
     @Override
-    public List<Object> getRecommendationRandomS(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
+    public List<RecommendSong.Song> getRecommendationRandomS(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
         return null;
     }
 
     @Override
-    public List<Object> getRecommendationRandomPL(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
+    public List<RecommendPLayList.PlayList> getRecommendationRandomPL(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
         return null;
     }
+
 }
+//        first way 循环程序性
+//        for(int key : map.keySet()){
+//            System.out.println(key);
+//        }
+//        second way （推荐）
+//        for(HashMap.Entry<String,Double> entry : tagsRate.entrySet()) {
+//            System.out.println(entry.getKey());
+//        }
+//        third way 迭代器
+//        Iterator<HashMap.Entry<Integer,Integer>> iterator = map.entrySet().iterator();
+//        while(iterator.hasNext()){
+//            System.out.println(iterator.next().getKey());
+//        }

@@ -4,6 +4,7 @@ import com.music.commons.pojo.menu.CodeEnum;
 import com.music.commons.pojo.resbody.Result;
 import com.music.commons.pojo.reqbody.RecommendationCondition;
 import com.music.recommendation.dao.RecommendationDao;
+import com.music.recommendation.pojo.RecommendPLayList;
 import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
 import com.music.recommendation.service.RecommendationService;
@@ -37,6 +38,8 @@ public class RecommendationServiceImpl implements RecommendationService {
          */
         if(recommendationCondition.getFlag() == 0) {
             // 获取用户收藏歌曲的比列，然后按照了比例获取一定数量的歌单
+
+            List<RecommendPLayList.PlayList> result = recommendationDao.getRecommendationPL(recommendationCondition.getUserId(),recommendationCondition.getPageIndex(),recommendationCondition.getPageSize());
             return null;
         } else if (recommendationCondition.getFlag() == 1) {
             List<RecommendSong.Song> result = recommendationDao.getRecommendationS(recommendationCondition.getUserId(),recommendationCondition.getPageIndex(),recommendationCondition.getPageSize());
@@ -45,10 +48,6 @@ public class RecommendationServiceImpl implements RecommendationService {
                     new Result<>(CodeEnum.SUCCESS.getCode(), true,true,CodeEnum.SUCCESS.getDesc(),result);
         }
         return new Result<>(CodeEnum.BAD_REQUEST_ILLEGAL_PARAM.getCode(), false,false,CodeEnum.BAD_REQUEST_ILLEGAL_PARAM.getDesc(),null);
-//        if(recommendationCondition.getUserId() == null) {
-//            // 返回错误报文
-//            return new Result<>(CodeEnum.BAD_REQUEST.getCode(),false,null,CodeEnum.BAD_REQUEST.getDesc(), null);
-//        }
     }
 
     /**

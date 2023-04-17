@@ -13,7 +13,7 @@ public class RecommendPLayList {
     @NoArgsConstructor
     @Data
     @Document("playlists")
-    static class PlayList {
+    public static class PlayList {
         @Id
         private String _id;
         private Integer id;
@@ -33,7 +33,7 @@ public class RecommendPLayList {
     @NoArgsConstructor
     @Data
     @Document("playlistdetail")
-    static class PlayListDetail{
+    public static class PlayListDetail{
         @Id
         private String _id;
         private Integer id;
