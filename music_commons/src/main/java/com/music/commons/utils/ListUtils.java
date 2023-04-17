@@ -26,7 +26,6 @@ public class ListUtils {
         List<Entry<String,Double>> list = new ArrayList<>(map.entrySet());
         list.sort(((o1, o2) -> (int) ((o2.getValue() - o1.getValue()) * 10000)));
         List<String> tagString = new ArrayList<>(tagSize);
-        System.out.println(list);
         for (int i = 0 ; i < tagSize ; i++) {
             tagString.add(i, list.get(i).getKey());
         }

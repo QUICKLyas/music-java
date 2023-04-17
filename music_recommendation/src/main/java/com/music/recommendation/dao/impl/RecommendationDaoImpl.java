@@ -29,8 +29,13 @@ public class RecommendationDaoImpl implements RecommendationDao {
     private MongoTemplate mongoTemplate;
     @Value("${song.tag.number}")
     int tagSize;
+    @Value("${song.default.some}")
+    private int someS;
+    @Value("${playlist.default.some}")
+    private int somePL;
+
     @Override
-    public List<RecommendSong.Song> getRecommendationS(String userId, @Nullable Integer pageIndex, @Nullable Integer pageSize) {
+    public List<RecommendSong.Song> getRecommendationS(String userId) {
         // 实现数据的获取
         // 通过userId获取对应用户的信息
         Criteria criteria = new Criteria();
@@ -56,7 +61,7 @@ public class RecommendationDaoImpl implements RecommendationDao {
     }
 
     @Override
-    public List<RecommendPLayList.PlayList> getRecommendationPL(String userId, @Nullable Integer pageIndex, @Nullable Integer pageSize) {
+    public List<RecommendPLayList.PlayList> getRecommendationPL(String userId) {
         // 实现数据的获取
         // 通过userId获取对应用户的信息
         Criteria criteria = new Criteria();
@@ -67,18 +72,17 @@ public class RecommendationDaoImpl implements RecommendationDao {
         AggregationResults<Recommendation> recommendations = mongoTemplate.aggregate(aggregation,Recommendation.class,Recommendation.class);
         Recommendation recommendation = recommendations.getMappedResults().get(0);
         HashMap<String,Double> tagsRate = recommendation.getTagsRate();
-        System.out.println(tagsRate);
         /*
             首先获取entrySet 本身数据量稳定的不超过100
          */
 
         List<String> tags = sortHashMapByValue(tagsRate,tagSize);
-        Query query = Query.query(
-                Criteria.where("tags").in(tags)
-        );
-        Pageable pageable = new PageRequest(pageIndex==null?0:pageIndex,pageSize ==null?);
-
-        return null;
+        // 根据tag分批次查询
+//        Query query = Query.query(
+//                Criteria.where("tags").(tags).size(somePL)
+//        );
+//        List<RecommendPLayList.PlayList> playLists = mongoTemplate.find(query, RecommendPLayList.PlayList.class);
+        return playLists;
     }
 
     @Override

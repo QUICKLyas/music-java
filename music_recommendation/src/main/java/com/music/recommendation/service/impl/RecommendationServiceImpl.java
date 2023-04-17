@@ -39,10 +39,10 @@ public class RecommendationServiceImpl implements RecommendationService {
         if(recommendationCondition.getFlag() == 0) {
             // 获取用户收藏歌曲的比列，然后按照了比例获取一定数量的歌单
 
-            List<RecommendPLayList.PlayList> result = recommendationDao.getRecommendationPL(recommendationCondition.getUserId(),recommendationCondition.getPageIndex(),recommendationCondition.getPageSize());
+            List<RecommendPLayList.PlayList> result = recommendationDao.getRecommendationPL(recommendationCondition.getUserId());
             return null;
         } else if (recommendationCondition.getFlag() == 1) {
-            List<RecommendSong.Song> result = recommendationDao.getRecommendationS(recommendationCondition.getUserId(),recommendationCondition.getPageIndex(),recommendationCondition.getPageSize());
+            List<RecommendSong.Song> result = recommendationDao.getRecommendationS(recommendationCondition.getUserId());
             return result==null || result.size() < 1 ?
                     new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),true,false, CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),null):
                     new Result<>(CodeEnum.SUCCESS.getCode(), true,true,CodeEnum.SUCCESS.getDesc(),result);
