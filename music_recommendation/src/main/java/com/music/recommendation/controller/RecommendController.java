@@ -37,7 +37,7 @@ public class RecommendController {
           song --> 1
          */
         recommendationCondition.setFlag(1);
-        if (recommendationCondition.getUserId() ==null ) {
+        if (recommendationCondition.getUserId() == null || recommendationCondition.getUserId().equals("")){
              // 根据mark值推荐数据
             return  recommendationService.getRecommendationsRandom(recommendationCondition);
         }
@@ -53,7 +53,7 @@ public class RecommendController {
          * playlist --> 0
          */
         recommendationCondition.setFlag(0);
-        if (recommendationCondition.getUserId() == null) {
+        if (recommendationCondition.getUserId() == null || recommendationCondition.getUserId().equals("")) {
             return recommendationService.getRecommendationsRandom(recommendationCondition);
         }
         return recommendationService.getRecommendations(recommendationCondition);

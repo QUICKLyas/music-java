@@ -34,9 +34,21 @@ public class RecommendationDaoImpl implements RecommendationDao {
     private int someS;
     @Value("${playlist.default.some}")
     private int somePL;
+    @Value("${song.recommend.mark.gte}")
+    private int markRear;
+    @Value("${song.recommend.mark.lte}")
+    private long markTop;
+    @Value("${playlist.recommend.subscribedCount.gte}")
+    private int subscribedCountRear;
+    @Value("${playlist.recommend.subscribedCount.lte}")
+    private long subscribedCountTop;
+    @Value("${playlist.recommend.playCount.gte}")
+    private int playCountRear;
+    @Value("${playlist.recommend.playCount.lte}")
+    private long playCountTop;
 
     @Override
-    public List<RecommendSong.Song> getRecommendationS(String userId) {
+    public List<RecommendSong.Song> getRecommendationS(String userId,@Nullable Integer pageIndex, @Nullable Integer pageSize) {
         // 实现数据的获取
         // 通过userId获取对应用户的信息
         Criteria criteria = new Criteria();
@@ -62,7 +74,7 @@ public class RecommendationDaoImpl implements RecommendationDao {
     }
 
     @Override
-    public List<RecommendPLayList.PlayList> getRecommendationPL(String userId) {
+    public List<RecommendPLayList.PlayList> getRecommendationPL(String userId,@Nullable Integer pageIndex, @Nullable Integer pageSize) {
         // 实现数据的获取
         // 通过userId获取对应用户的信息
         Criteria criteria = new Criteria();
@@ -82,37 +94,43 @@ public class RecommendationDaoImpl implements RecommendationDao {
         Aggregation aggregationPL = Aggregation.newAggregation(
                 // 查询包含该数据的
                 Aggregation.match(Criteria.where("tag").regex(pattern)),
-                Aggregation.sample(somePL)
+                Aggregation.sample(pageSize==null || pageSize == 0?somePL:pageSize)
         );
         AggregationResults<RecommendPLayList.PlayList> playListsA = mongoTemplate.aggregate(aggregationPL, RecommendPLayList.PlayList.class,RecommendPLayList.PlayList.class);
-        List<RecommendPLayList.PlayList> playLists = playListsA.getMappedResults();
-        return playLists;
+        return playListsA.getMappedResults();
     }
 
     @Override
     public List<RecommendSong.Song> getRecommendationRandomS(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
         /*
-         通过mark数量来获取数据，根据一定的分布获取数据
+           通过mark数量来获取数据，根据一定的分布获取数据
+           不会传入用户的信息，直接就是从数据库中获取数据，按照mark值进行数据的排序和获取
          */
-        return null;
+
+        // 实现数据的获取
+        // 通过userId获取对应用户的信息
+        Criteria criteria = new Criteria();
+        criteria.and("mark").gte(markRear);
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.match(criteria),
+                Aggregation.sample(pageSize==null|| pageSize==0?someS:pageSize)
+        );
+        AggregationResults<RecommendSong.Song> recommendations = mongoTemplate.aggregate(aggregation, RecommendSong.Song.class, RecommendSong.Song.class);
+
+        return recommendations.getMappedResults();
     }
 
     @Override
     public List<RecommendPLayList.PlayList> getRecommendationRandomPL(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
-        return null;
-    }
+        Criteria criteria = new Criteria();
+        criteria.and("playCount").gte(playCountRear).lte(playCountTop).and("subscribedCount").gte(subscribedCountRear).lte(subscribedCountTop);
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.match(criteria),
+                Aggregation.sample(pageSize==null||pageSize == 0?someS:pageSize)
+        );
+        AggregationResults<RecommendPLayList.PlayList> recommendations = mongoTemplate.aggregate(aggregation, RecommendPLayList.PlayList.class, RecommendPLayList.PlayList.class);
 
+        return recommendations.getMappedResults();
+    }
 }
-//        first way 循环程序性
-//        for(int key : map.keySet()){
-//            System.out.println(key);
-//        }
-//        second way （推荐）
-//        for(HashMap.Entry<String,Double> entry : tagsRate.entrySet()) {
-//            System.out.println(entry.getKey());
-//        }
-//        third way 迭代器
-//        Iterator<HashMap.Entry<Integer,Integer>> iterator = map.entrySet().iterator();
-//        while(iterator.hasNext()){
-//            System.out.println(iterator.next().getKey());
-//        }
+

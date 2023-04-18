@@ -34,4 +34,19 @@ public class TestDaoImpl {
             System.out.println(item.getTags());
         }
     }
+    @Test
+    public void TestRecommendRandomSong () {
+        List<RecommendSong.Song> recommendationPl = recommendationDao.getRecommendationRandomS(null,null);
+        System.out.println(recommendationPl.size());
+        for (RecommendSong.Song item : recommendationPl) {
+//            System.out.println(item.getMark());
+        }
+    }
+    @Test
+    public void TestRecommendRandomPlayList () {
+        List<RecommendPLayList.PlayList> recommendationPl = recommendationDao.getRecommendationRandomPL(null,null);
+        for (RecommendPLayList.PlayList item : recommendationPl) {
+            System.out.println(item.getPlayCount() + " " + item.getSubscribedCount());
+        }
+    }
 }

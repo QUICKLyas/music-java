@@ -8,7 +8,7 @@ spring:
   profiles:
     active: mongodb
 server:
-  port: 9000 # song
+  port: 9005 # recommendation
 eureka:
   instance:
     prefer-ip-address: true
