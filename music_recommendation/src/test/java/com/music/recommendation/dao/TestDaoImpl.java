@@ -31,7 +31,7 @@ public class TestDaoImpl {
     public void TestRecommendPlayList () {
         List<RecommendPLayList.PlayList> recommendationPl = recommendationDao.getRecommendationPL("1a78b764b67911ed95dd00155dadb10b");
         for (RecommendPLayList.PlayList item : recommendationPl) {
-            System.out.println(item);
+            System.out.println(item.getTags());
         }
     }
 }

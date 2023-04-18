@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class RecommendSong {
+public class RecommendSong extends Recommendation{
     @Data
     @AllArgsConstructor
     @NoArgsConstructor

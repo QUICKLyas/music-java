@@ -19,8 +19,9 @@ import javax.annotation.Nullable;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
-import static com.music.commons.utils.ListUtils.sortHashMapByValue;
+import static com.music.commons.utils.ListUtils.*;
 
 @Repository
 public class RecommendationDaoImpl implements RecommendationDao {
@@ -75,18 +76,24 @@ public class RecommendationDaoImpl implements RecommendationDao {
         /*
             首先获取entrySet 本身数据量稳定的不超过100
          */
-
         List<String> tags = sortHashMapByValue(tagsRate,tagSize);
-        // 根据tag分批次查询
-//        Query query = Query.query(
-//                Criteria.where("tags").(tags).size(somePL)
-//        );
-//        List<RecommendPLayList.PlayList> playLists = mongoTemplate.find(query, RecommendPLayList.PlayList.class);
+        // 生成匹配公式
+        Pattern pattern = Pattern.compile(list2String(tags), Pattern.CASE_INSENSITIVE);
+        Aggregation aggregationPL = Aggregation.newAggregation(
+                // 查询包含该数据的
+                Aggregation.match(Criteria.where("tag").regex(pattern)),
+                Aggregation.sample(somePL)
+        );
+        AggregationResults<RecommendPLayList.PlayList> playListsA = mongoTemplate.aggregate(aggregationPL, RecommendPLayList.PlayList.class,RecommendPLayList.PlayList.class);
+        List<RecommendPLayList.PlayList> playLists = playListsA.getMappedResults();
         return playLists;
     }
 
     @Override
     public List<RecommendSong.Song> getRecommendationRandomS(@Nullable Integer pageIndex, @Nullable Integer pageSize) {
+        /*
+         通过mark数量来获取数据，根据一定的分布获取数据
+         */
         return null;
     }
 

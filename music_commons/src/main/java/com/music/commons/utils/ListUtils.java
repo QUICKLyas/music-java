@@ -31,4 +31,23 @@ public class ListUtils {
         }
         return tagString;
     }
+
+    public static String list2String(List<String> list) {
+        String str = "";
+        for (String item : list) {
+            str += item +  "|";
+        }
+
+        str = str.substring(0,str.length()-1) ;
+        return str;
+    }
+    public static List<List<String>> createListTag(List<String> tags) {
+        List<List<String>> listLs = new ArrayList<>();
+        for (String tag : tags) {
+            List<String> item = new ArrayList<>();
+            item.add(tag);
+            listLs.add(item);
+        }
+        return listLs;
+    }
 }

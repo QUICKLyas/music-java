@@ -8,7 +8,6 @@ import com.music.recommendation.pojo.RecommendPLayList;
 import com.music.recommendation.pojo.RecommendSong;
 import com.music.recommendation.pojo.Recommendation;
 import com.music.recommendation.service.RecommendationService;
-import org.bson.types.Code;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,11 +25,12 @@ public class RecommendationServiceImpl implements RecommendationService {
      * 非随机的推荐，根据用户传入的数据进行数据的推荐，
      * 一种是根据tag的占比进行有占比特征的正太分布式的推荐
      * 一种是更具协同过滤算法进行的相似用户之间额度推荐，党数据达到一定量的时候通过tag和用户进行对歌曲的推荐
+     *
      * @param recommendationCondition
      * @return
      */
     @Override
-    public Result<RecommendSong.Song> getRecommendations(RecommendationCondition recommendationCondition) {
+    public Result getRecommendations(RecommendationCondition recommendationCondition) {
 
         /*
             song --> 1
@@ -40,7 +40,9 @@ public class RecommendationServiceImpl implements RecommendationService {
             // 获取用户收藏歌曲的比列，然后按照了比例获取一定数量的歌单
 
             List<RecommendPLayList.PlayList> result = recommendationDao.getRecommendationPL(recommendationCondition.getUserId());
-            return null;
+            return result==null || result.size() < 1 ?
+                    new Result<>(CodeEnum.SUCCESS_BUT_NO_DATA.getCode(),true,false, CodeEnum.SUCCESS_BUT_NO_DATA.getDesc(),null):
+                    new Result<>(CodeEnum.SUCCESS.getCode(), true,true,CodeEnum.SUCCESS.getDesc(),result);
         } else if (recommendationCondition.getFlag() == 1) {
             List<RecommendSong.Song> result = recommendationDao.getRecommendationS(recommendationCondition.getUserId());
             return result==null || result.size() < 1 ?
@@ -59,7 +61,7 @@ public class RecommendationServiceImpl implements RecommendationService {
      */
 
     @Override
-    public Result<Recommendation> getRecommendationsRandom(RecommendationCondition recommendationCondition) {
+    public Result getRecommendationsRandom(RecommendationCondition recommendationCondition) {
         return null;
     }
 

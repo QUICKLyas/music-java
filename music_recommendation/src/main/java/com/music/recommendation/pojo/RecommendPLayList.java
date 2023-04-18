@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-public class RecommendPLayList {
+public class RecommendPLayList extends Recommendation{
     @AllArgsConstructor
     @NoArgsConstructor
     @Data
@@ -16,7 +16,7 @@ public class RecommendPLayList {
     public static class PlayList {
         @Id
         private String _id;
-        private Integer id;
+        private Long id;
         private String name;
         private List<String> tags;
         private String coverImgUrl;
@@ -28,6 +28,7 @@ public class RecommendPLayList {
         private Integer playCount;
         private Long createTime;
         private Long updateTime;
+        private String tag;
     }
     @AllArgsConstructor
     @NoArgsConstructor
@@ -36,7 +37,7 @@ public class RecommendPLayList {
     public static class PlayListDetail{
         @Id
         private String _id;
-        private Integer id;
+        private Long id;
         private String name;
         private List<String> tags;
         private String coverImgUrl;
